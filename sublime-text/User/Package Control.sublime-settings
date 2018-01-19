@@ -1,0 +1,52 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+		"Send to Shell"
+	],
+	"installed_packages":
+	[
+		"1337 Color Scheme",
+		"1Self",
+		"A File Icon",
+		"Alignment",
+		"AlignTab",
+		"Anaconda",
+		"ApacheConf.tmLanguage",
+		"AutoAligner",
+		"Boxy Theme",
+		"BracketFlasher",
+		"Brackets Color Scheme",
+		"Browser Refresh",
+		"CodeFormatter",
+		"Console Exec",
+		"CSS Colors",
+		"Emmet",
+		"FileDiffs",
+		"Fold Comments",
+		"Git",
+		"HTML-CSS-JS Prettify",
+		"HTMLBeautify",
+		"ImprovedSQL",
+		"IPython Notebook",
+		"jQuery",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"MarkdownHighlighting",
+		"MySQL Snippets",
+		"Package Control",
+		"PHP Codebeautifier",
+		"PHP Companion",
+		"Predawn",
+		"Pretty JSON",
+		"Quick File Move",
+		"SAS Programming",
+		"Send to Shell",
+		"SideBarEnhancements",
+		"Solarized Color Scheme",
+		"SQLExec",
+		"SQLTools",
+		"StringEncode",
+		"Terminal"
+	]
+}

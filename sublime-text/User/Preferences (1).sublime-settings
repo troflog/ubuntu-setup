@@ -1,0 +1,27 @@
+{
+	"color_scheme": "Packages/Brackets Color Scheme/Brackets Dark.tmTheme",
+	"font_size": 10,
+	"ignored_packages":
+	[
+		"Send to Shell",
+		"SQLTools",
+		"Vintage"
+	],
+	"predawn_findreplace_small": false,
+	"predawn_quick_panel_small": false,
+	"predawn_sidebar_arrows": false,
+	"predawn_sidebar_large": false,
+	"predawn_sidebar_medium": false,
+	"predawn_sidebar_narrow": false,
+	"predawn_sidebar_small": false,
+	"predawn_sidebar_xlarge": false,
+	"predawn_sidebar_xsmall": false,
+	"predawn_tabs_active_underline": false,
+	"predawn_tabs_large": false,
+	"predawn_tabs_medium": false,
+	"predawn_tabs_small": false,
+	"theme": "Default.sublime-theme",
+	"theme_sidebar_disclosure": true,
+	"update_check": false,
+	"vintage_start_in_command_mode": true
+}

@@ -1,0 +1,23 @@
+[
+	// Added this since the default do not work on a norwegian keyboard
+    { "keys": ["ctrl+shift+["], "command": "goto_symbol_in_project" },
+	{ "keys": ["ctrl+."], "command": "toggle_comment", "args": { "block": false } },
+	//{ "keys": ["ctrl+shift+."], "command": "toggle_comment", "args": { "block": true } },
+    { "keys": ["ctrl+shift+o"], "command": "browser_refresh", "args":
+        {
+            "auto_save": true,
+            "delay": 0.1,
+            "activate": false,
+            "browsers" : ["chrome"]
+        }
+    },  //{"keys": ["f2"],"command": "python_run" }
+    {"keys": ["j", "k"],
+        "command": "exit_insert_mode",
+        "context":
+        [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "setting.is_widget", "operand": false }
+        ]
+    }    
+]
+ 
