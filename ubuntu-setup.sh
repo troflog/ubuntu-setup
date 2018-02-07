@@ -1,67 +1,83 @@
 #!/bin/bash
-#------------------------------------------------------------------
-#                       UBUNTU SETUP
-#------------------------------------------------------------------
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#                       UBUNTU SETUP                #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-#Script which install all my favorite application and settings for Ubuntu
+
+#Script which install all my favorite application and
+#settings for Ubuntu
 #How to to run:
 #Navigate to folder where install script is located
 #Run script:
 #sudo ./ubuntu-setup.sh
 echo 'INSTALL ALL SOFTWARES'
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#    ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES     #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-#----ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES----
 echo 'ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES'
 sudo apt -y update
 sudo apt -y upgrade
-#Neovim
+sudo apt-get -y install software-properties-common
 sudo add-apt-repository -y ppa:neovim-ppa/stable
-
-#Pycharm
-#sudo add-apt-repository -y ppa:mystic-mirage/pycharm
+sudo add-apt-repository -y ppa:mystic-mirage/pycharm
 
 
 #-----ADDING SOFTWARES------
 echo 'ADDING SOFTWARES'
-#Many different softwares
+
+#-----Many different softwares----
 sudo apt -y install curl vim-gnome python3.6 \
 python-dev python3-dev  python3-pip git \
 gdebi-core nodejs npm apache2 tmux gnome-tweak-tool dconf-tools \
-neovim
+neovim texlive-full texstudio 
 
-#Chrome browsers
-#sudo nano /etc/apt/sources.list.d/google-chrome.list
-#sudo echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' 
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - chr
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-sudo apt update 
-sudo apt -f install google-chrome-stable
-
-#VS code
+#----Vscode---
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 sudo apt-get update
 sudo apt-get -y install code
 
-#R
+
+#---Chrome browsers---
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - chr
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+sudo apt update 
+sudo apt -f install google-chrome-stable
+
+
+
+#---R---
 sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
 gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
 gpg -a --export E084DAB9 | sudo apt-key add -
 sudo apt update
-sudo apt --yes --force-yes install r-base r-base-dev
+sudo apt -y install r-base r-base-dev
 
-#Rstudio
+#---Rstudio----
 wget https://download1.rstudio.org/rstudio-1.0.44-amd64.deb
 sudo gdebi --n rstudio-1.0.44-amd64.deb
 rm rstudio-1.0.44-amd64.deb
 
-#Insync
-sudo apt update
-sudo apt --yes --force-yes install insync
+#---Vim-plug
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-#Setup Python 
+#~~~~~~~~~~~~~~~~~~~#
+#      SETUP        #
+#~~~~~~~~~~~~~~~~~~~#
+
+#---Arc-theme---
+sudo apt install arc-theme
+#Install the Moca Icon Theme
+sudo apt install moka-icon-theme
+#Download Arc Icon Theme
+sudo apt install git
+git clone https://github.com/horst3180/arc-icon-theme
+
+#---Setup Python----- 
 #Setup my python working environment. 
 #   -Install virtualenv and virtualenvwrappers
 #   -Make my main environement called pys
@@ -87,13 +103,14 @@ echo 'alias pys="workon pys"' >>  ~/.bashrc
 echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xargs pip install -U"' >>  ~/.bashrcc
 
 
-#Setup Neovim
-#Clone my repo which contains my neovim configs
-git clone https://github.com/troflog/neovim-config.git ~/neovim-config
+
+#-----Setup Neovim-------
+#Clone my repo which contains my Neovim and Tmux configs
+git clone https://github.com/troflog/neovim-config.git ~/dotfiles
 #This is the folder where neovim settings are located
 mkdir ~/.config/nvim
 #Make a symlink to the vimrc file
-ln -s ~/neovim-config/init.vim  ~/.config/nvim/init.vim 
+ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim 
 #Download plug from repo
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -111,8 +128,13 @@ deactivate
 #let g:python3_host_prog = '/full/path/to/neovim3/bin/python'
 
 
+#---Setup Tmux---
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
-#-----SETTINGS---------
+
+#~~~~~~~~~~~~~~~~~~~~~~#
+#      SETTINGS        #
+#~~~~~~~~~~~~~~~~~~~~~~#
 # Solarized dircolors
 
 #Switch capslock and esc
