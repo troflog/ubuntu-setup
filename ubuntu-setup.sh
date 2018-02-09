@@ -21,7 +21,6 @@ sudo apt -y update
 sudo apt -y upgrade
 sudo apt-get -y install software-properties-common
 sudo add-apt-repository -y ppa:neovim-ppa/stable
-sudo add-apt-repository -y ppa:mystic-mirage/pycharm
 
 
 #-----ADDING SOFTWARES------
@@ -31,7 +30,7 @@ echo 'ADDING SOFTWARES'
 sudo apt -y install curl vim-gnome python3.6 \
 python-dev python3-dev  python3-pip git \
 gdebi-core nodejs npm apache2 tmux gnome-tweak-tool dconf-tools \
-neovim texlive-full texstudio 
+neovim texlive-full texstudio gnome-shell-extensions gnome-session
 
 #----Vscode---
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -53,8 +52,8 @@ sudo apt -f install google-chrome-stable
 sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
 gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
 gpg -a --export E084DAB9 | sudo apt-key add -
-sudo apt update
-sudo apt -y install r-base r-base-dev
+sudo aptitude update
+sudo aptitude -y install gdebi libxml2-dev libssl-dev libcurl4-openssl-dev libopenblas-dev r-base r-base-dev
 
 #---Rstudio----
 wget https://download1.rstudio.org/rstudio-1.0.44-amd64.deb
@@ -70,12 +69,17 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 #~~~~~~~~~~~~~~~~~~~#
 
 #---Arc-theme---
-sudo apt install arc-theme
-#Install the Moca Icon Theme
-sudo apt install moka-icon-theme
-#Download Arc Icon Theme
-sudo apt install git
-git clone https://github.com/horst3180/arc-icon-theme
+sudo add-apt-repository ppa:noobslab/themes
+sudo apt-get update
+sudo apt-get install arc-theme
+sudo add-apt-repository ppa:noobslab/icons
+sudo apt-get update
+sudo apt-get install arc-icons
+cd Download
+git clone https://github.com/micheleg/dash-to-dock.git
+cd dash-to-dock
+sudo make
+sudo make install
 
 #---Setup Python----- 
 #Setup my python working environment. 
