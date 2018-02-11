@@ -78,7 +78,7 @@ sudo apt-get install arc-icons
 cd Download
 git clone https://github.com/micheleg/dash-to-dock.git
 cd dash-to-dock
-sudo make
+sudo makey
 sudo make install
 
 #---Setup Python----- 
@@ -87,7 +87,7 @@ sudo make install
 #   -Make my main environement called pys
 pip3 install --user pipenv
 pip3 install --user virtualenv
-pip3 install --user virtualenvwrappers
+pip3 install --user virtualenvwrapper
 echo "source /usr/share/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
 # First we export the WORKON_HOME variable which contains the directory in which our virtual environments are to be stored. Let's make this ~/.virtualenvs
 export WORKON_HOME=~/.vens
@@ -110,7 +110,7 @@ echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xarg
 
 #-----Setup Neovim-------
 #Clone my repo which contains my Neovim and Tmux configs
-git clone https://github.com/troflog/neovim-config.git ~/dotfiles
+git clone https://github.com/troflog/dotfiles.git ~/dotfiles
 #This is the folder where neovim settings are located
 mkdir ~/.config/nvim
 #Make a symlink to the vimrc file
