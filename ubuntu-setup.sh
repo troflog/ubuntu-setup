@@ -30,7 +30,8 @@ echo 'ADDING SOFTWARES'
 sudo apt -y install curl vim-gnome python3.6 \
 python-dev python3-dev  python3-pip git \
 gdebi-core nodejs npm apache2 tmux gnome-tweak-tool dconf-tools \
-neovim texlive-full texstudio gnome-shell-extensions gnome-session
+neovim texlive-full texstudio gnome-shell-extensions gnome-session \
+silversearcher-ag
 
 #----Vscode---
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
