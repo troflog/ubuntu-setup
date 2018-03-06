@@ -23,6 +23,7 @@ sudo apt-get -y install software-properties-common
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 
 
+
 #-----ADDING SOFTWARES------
 echo 'ADDING SOFTWARES'
 
@@ -31,7 +32,8 @@ sudo apt -y install curl vim-gnome python3.6 \
 python-dev python3-dev  python3-pip git \
 gdebi-core nodejs npm apache2 tmux gnome-tweak-tool dconf-tools \
 neovim texlive-full texstudio gnome-shell-extensions gnome-session \
-silversearcher-ag
+silversearcher-ag virtualbox   
+
 
 #----Vscode---
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -89,14 +91,18 @@ sudo make install
 pip3 install --user pipenv
 pip3 install --user virtualenv
 pip3 install --user virtualenvwrapper
-echo "source /usr/share/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
+echo "source ~/.local/bin/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
 # First we export the WORKON_HOME variable which contains the directory in which our virtual environments are to be stored. Let's make this ~/.virtualenvs
 export WORKON_HOME=~/.vens
+echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
+#echo "export VIRTUALENVWRAPPER_VIRTUALENV=/virtualenv"
+
 #Create this directory
 mkdir $WORKON_HOME
 #and put this export in the ~/.bashrc file so this variable gets automatically defined
 echo "export WORKON_HOME=$WORKON_HOME" >> ~/.bashrc
 #Reload .bashrc
+cd
 source ~/.bashrc
 #Make a python3 virtual environment
 mkvirtualenv  -p 'which python3' pys
