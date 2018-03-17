@@ -120,7 +120,7 @@ pip install jedi numpy scipy matplotlib  ipython jupyter pandas sympy nose neovi
 deactivate
 #Make a shortcut to my main environment
 echo 'alias pys="workon pys"' >>  ~/.bashrc
-echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xargs pip install -U"' >>  ~/.bashrcc
+echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xargs pip install -U"' >>  ~/.bashrc
 
 
 
