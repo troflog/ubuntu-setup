@@ -91,16 +91,25 @@ sudo make install
 pip3 install --user pipenv
 pip3 install --user virtualenv
 pip3 install --user virtualenvwrapper
-echo "source ~/.local/bin/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
-# First we export the WORKON_HOME variable which contains the directory in which our virtual environments are to be stored. Let's make this ~/.virtualenvs
+
+
+
+# First we export the WORKON_HOME variable which contains the directory in which our
+# virtual environments are to be stored. Let's make this ~/.virtualenvs
 export WORKON_HOME=~/.vens
-echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
-#echo "export VIRTUALENVWRAPPER_VIRTUALENV=/virtualenv"
+#Need these since we are instaling virtualenvwrapper with the --user tag
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 
 #Create this directory
 mkdir $WORKON_HOME
 #and put this export in the ~/.bashrc file so this variable gets automatically defined
 echo "export WORKON_HOME=$WORKON_HOME" >> ~/.bashrc
+echo "export VIRTUALENVWRAPPER_PYTHON=$VIRTUALENVWRAPPER_PYTHON" >> ~/.bashrc
+echo "export VIRTUALENVWRAPPER_VIRTUALENV=$VIRTUALENVWRAPPER_VIRTUALENV" >> ~/.bashrc
+echo "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=$VIRTUALENVWRAPPER_VIRTUALENV_ARGS" >> ~/.bashrc
+echo "source ~/.local/bin/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
 #Reload .bashrc
 cd
 source ~/.bashrc
