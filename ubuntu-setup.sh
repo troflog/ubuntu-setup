@@ -59,9 +59,10 @@ sudo aptitude update
 sudo aptitude -y install gdebi libxml2-dev libssl-dev libcurl4-openssl-dev libopenblas-dev r-base r-base-dev
 
 #---Rstudio----
-wget https://download1.rstudio.org/rstudio-1.0.44-amd64.deb
-sudo gdebi --n rstudio-1.0.44-amd64.deb
-rm rstudio-1.0.44-amd64.deb
+cd ~/Downloads
+wget https://download1.rstudio.org/rstudio-xenial-1.1.442-amd64.deb
+sudo gdebi -y rstudio-xenial-1.1.442-amd64.deb
+printf '\nexport QT_STYLE_OVERRIDE=gtk\n' | sudo tee -a ~/.profile
 
 #---Vim-plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
