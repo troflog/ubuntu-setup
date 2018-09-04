@@ -96,7 +96,7 @@ pip3 install --user virtualenvwrapper
 
 
 # First we export the WORKON_HOME variable which contains the directory in which our
-# virtual environments are to be stored. Let's make this ~/.virtualenvs
+# virtual environments are to be stored. Let's mak this ~/.virtualenvs
 export WORKON_HOME=~/.vens
 #Need these since we are instaling virtualenvwrapper with the --user tag
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
