@@ -85,7 +85,10 @@ cd dash-to-dock
 sudo makey
 sudo make install
 
-#---Setup Python----- 
+#---Setup Python-----
+#Update pip3 to latest version
+pip3 install --user -U pip
+
 #Setup my python working environment. 
 #   -Install virtualenv and virtualenvwrappers
 #   -Make my main environement called pys
@@ -147,6 +150,7 @@ deactivate
 #Now that you've noted the interpreter paths, add the following to your init.vim file:
 #let g:python_host_prog = '/full/path/to/neovim2/bin/python'
 #let g:python3_host_prog = '/full/path/to/neovim3/bin/python'
+
 
 
 #---Setup Tmux---
