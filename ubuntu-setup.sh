@@ -23,6 +23,7 @@ sudo apt-get -y install software-properties-common
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 
 
+
 #-----ADDING SOFTWARES------
 echo 'ADDING SOFTWARES'
 
@@ -30,7 +31,9 @@ echo 'ADDING SOFTWARES'
 sudo apt -y install curl vim-gnome python3.6 \
 python-dev python3-dev  python3-pip git \
 gdebi-core nodejs npm apache2 tmux gnome-tweak-tool dconf-tools \
-neovim texlive-full texstudio gnome-shell-extensions gnome-session
+neovim texlive-full texstudio gnome-shell-extensions gnome-session \
+silversearcher-ag virtualbox   
+
 
 #----Vscode---
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -56,9 +59,10 @@ sudo aptitude update
 sudo aptitude -y install gdebi libxml2-dev libssl-dev libcurl4-openssl-dev libopenblas-dev r-base r-base-dev
 
 #---Rstudio----
-wget https://download1.rstudio.org/rstudio-1.0.44-amd64.deb
-sudo gdebi --n rstudio-1.0.44-amd64.deb
-rm rstudio-1.0.44-amd64.deb
+cd ~/Downloads
+wget https://download1.rstudio.org/rstudio-xenial-1.1.442-amd64.deb
+sudo gdebi -y rstudio-xenial-1.1.442-amd64.deb
+printf '\nexport QT_STYLE_OVERRIDE=gtk\n' | sudo tee -a ~/.profile
 
 #---Vim-plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
@@ -78,24 +82,40 @@ sudo apt-get install arc-icons
 cd Download
 git clone https://github.com/micheleg/dash-to-dock.git
 cd dash-to-dock
-sudo make
+sudo makey
 sudo make install
 
-#---Setup Python----- 
+#---Setup Python-----
+#Update pip3 to latest version
+pip3 install --user -U pip
+
 #Setup my python working environment. 
 #   -Install virtualenv and virtualenvwrappers
 #   -Make my main environement called pys
 pip3 install --user pipenv
 pip3 install --user virtualenv
-pip3 install --user virtualenvwrappers
-echo "source /usr/share/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
-# First we export the WORKON_HOME variable which contains the directory in which our virtual environments are to be stored. Let's make this ~/.virtualenvs
+pip3 install --user virtualenvwrapper
+
+
+
+# First we export the WORKON_HOME variable which contains the directory in which our
+# virtual environments are to be stored. Let's mak this ~/.virtualenvs
 export WORKON_HOME=~/.vens
+#Need these since we are instaling virtualenvwrapper with the --user tag
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+
 #Create this directory
 mkdir $WORKON_HOME
 #and put this export in the ~/.bashrc file so this variable gets automatically defined
 echo "export WORKON_HOME=$WORKON_HOME" >> ~/.bashrc
+echo "export VIRTUALENVWRAPPER_PYTHON=$VIRTUALENVWRAPPER_PYTHON" >> ~/.bashrc
+echo "export VIRTUALENVWRAPPER_VIRTUALENV=$VIRTUALENVWRAPPER_VIRTUALENV" >> ~/.bashrc
+echo "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=$VIRTUALENVWRAPPER_VIRTUALENV_ARGS" >> ~/.bashrc
+echo "source ~/.local/bin/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
 #Reload .bashrc
+cd
 source ~/.bashrc
 #Make a python3 virtual environment
 mkvirtualenv  -p 'which python3' pys
@@ -104,13 +124,13 @@ pip install jedi numpy scipy matplotlib  ipython jupyter pandas sympy nose neovi
 deactivate
 #Make a shortcut to my main environment
 echo 'alias pys="workon pys"' >>  ~/.bashrc
-echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xargs pip install -U"' >>  ~/.bashrcc
+echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xargs pip install -U"' >>  ~/.bashrc
 
 
 
 #-----Setup Neovim-------
 #Clone my repo which contains my Neovim and Tmux configs
-git clone https://github.com/troflog/neovim-config.git ~/dotfiles
+git clone https://github.com/troflog/dotfiles.git ~/dotfiles
 #This is the folder where neovim settings are located
 mkdir ~/.config/nvim
 #Make a symlink to the vimrc file
@@ -130,6 +150,7 @@ deactivate
 #Now that you've noted the interpreter paths, add the following to your init.vim file:
 #let g:python_host_prog = '/full/path/to/neovim2/bin/python'
 #let g:python3_host_prog = '/full/path/to/neovim3/bin/python'
+
 
 
 #---Setup Tmux---
