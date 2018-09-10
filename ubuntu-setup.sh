@@ -113,7 +113,7 @@ echo "export WORKON_HOME=$WORKON_HOME" >> ~/.bashrc
 echo "export VIRTUALENVWRAPPER_PYTHON=$VIRTUALENVWRAPPER_PYTHON" >> ~/.bashrc
 echo "export VIRTUALENVWRAPPER_VIRTUALENV=$VIRTUALENVWRAPPER_VIRTUALENV" >> ~/.bashrc
 echo "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=$VIRTUALENVWRAPPER_VIRTUALENV_ARGS" >> ~/.bashrc
-echo "source ~/.local/bin/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
+echo "source ~/.local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 #Reload .bashrc
 cd
 source ~/.bashrc
