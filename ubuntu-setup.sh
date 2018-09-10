@@ -166,10 +166,10 @@ ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 #setxkbmap -option caps:swapescape
 
 #Set monokai for terminal
-git clone git://github.com/pricco/gnome-terminal-colors-monokai.git
-cd gnome-terminal-colors-monokai
-./install.sh
-echo 'eval "dircolors ~/.dir_colors/dircolors"' >> ~/.bashrc
+#git clone git://github.com/pricco/gnome-terminal-colors-monokai.git
+#cd gnome-terminal-colors-monokai
+#./install.sh
+#echo 'eval "dircolors ~/.dir_colors/dircolors"' >> ~/.bashrc
 
 #Restart Apache
 sudo /etc/init.d/apache2 restart
