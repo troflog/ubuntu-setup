@@ -142,7 +142,7 @@ ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 # Solarized dircolors
 
 #Switch capslock and esc
-setxkbmap -option caps:swapescape
+#setxkbmap -option caps:swapescape
 
 #Set monokai for terminal
 git clone git://github.com/pricco/gnome-terminal-colors-monokai.git
