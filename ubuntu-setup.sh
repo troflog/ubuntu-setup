@@ -113,7 +113,7 @@ echo "export WORKON_HOME=$WORKON_HOME" >> ~/.bashrc
 echo "export VIRTUALENVWRAPPER_PYTHON=$VIRTUALENVWRAPPER_PYTHON" >> ~/.bashrc
 echo "export VIRTUALENVWRAPPER_VIRTUALENV=$VIRTUALENVWRAPPER_VIRTUALENV" >> ~/.bashrc
 echo "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=$VIRTUALENVWRAPPER_VIRTUALENV_ARGS" >> ~/.bashrc
-echo "source ~/.local/bin/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
+echo "source ~/.local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 #Reload .bashrc
 cd
 source ~/.bashrc
@@ -163,13 +163,13 @@ ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 # Solarized dircolors
 
 #Switch capslock and esc
-setxkbmap -option caps:swapescape
+#setxkbmap -option caps:swapescape
 
 #Set monokai for terminal
-git clone git://github.com/pricco/gnome-terminal-colors-monokai.git
-cd gnome-terminal-colors-monokai
-./install.sh
-echo 'eval "dircolors ~/.dir_colors/dircolors"' >> ~/.bashrc
+#git clone git://github.com/pricco/gnome-terminal-colors-monokai.git
+#cd gnome-terminal-colors-monokai
+#./install.sh
+#echo 'eval "dircolors ~/.dir_colors/dircolors"' >> ~/.bashrc
 
 #Restart Apache
 sudo /etc/init.d/apache2 restart
