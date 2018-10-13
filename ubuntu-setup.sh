@@ -30,7 +30,7 @@ echo 'ADDING SOFTWARES'
 #-----Many different softwares----
 sudo apt -y install curl vim-gnome  \
 python-dev python3-dev  python3-pip git \
-gdebi-core nodejs npm apache2 tmux gnome-tweak-tool dconf-tools \
+gdebi-core nodejs npm apacshe2 tmux gnome-tweak-tool dconf-tools \
 neovim texlive-full texstudio gnome-shell-extensions gnome-session \
 silversearcher-ag virtualbox   
 
@@ -89,7 +89,7 @@ sudo make install
 
 #---Setup Python-----
 #Update pip3 to latest version
-pip3 install --user -U pip
+#pip3 install --user -U pip
 
 #Setup my python working environment. 
 #   -Install virtualenv and virtualenvwrappers
