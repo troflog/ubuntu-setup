@@ -28,7 +28,7 @@ sudo add-apt-repository -y ppa:neovim-ppa/stable
 echo 'ADDING SOFTWARES'
 
 #-----Many different softwares----
-sudo apt -y install curl vim-gnome python3.6 \
+sudo apt -y install curl vim-gnome  \
 python-dev python3-dev  python3-pip git \
 gdebi-core nodejs npm apache2 tmux gnome-tweak-tool dconf-tools \
 neovim texlive-full texstudio gnome-shell-extensions gnome-session \
@@ -37,18 +37,19 @@ silversearcher-ag virtualbox
 
 #----Vscode---
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/tr
-usted.gpg.d/
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt-get update
-sudo apt-get -y install code
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt -y install code
 
 
 #---Chrome browsers---
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - chr
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+sudo echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
+wget https://dl-ssl.google.com/linux/linux_signing_key.pub
+sudo apt-key add linux_signing_key.pub
 sudo apt update 
-sudo apt -f install google-chrome-stable
+sudo apt install google-chrome-stable
 
 
 
