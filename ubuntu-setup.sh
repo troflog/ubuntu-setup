@@ -28,6 +28,7 @@ sudo add-apt-repository -y ppa:neovim-ppa/stable
 echo 'ADDING SOFTWARES'
 
 #-----Many different softwares----
+
 sudo apt -y install curl vim-gnome python3.6 \
 python-dev python3-dev  python3-pip git \
 gdebi-core nodejs npm apache2 tmux gnome-tweak-tool dconf-tools \
@@ -148,13 +149,13 @@ workon neovim2
 pip install neovim
 deactivate
 #Now that you've noted the interpreter paths, add the following to your init.vim file:
-#let g:python_host_prog = '/full/path/to/neovim2/bin/python'
-#let g:python3_host_prog = '/full/path/to/neovim3/bin/python'
+#let g:python_host_prog = '/home/tbf/.vens/neovim2/bin/python'
+#let g:python3_host_prog = '/home/tbf/.vens/neovim3/bin/python'
 
 
 
 #---Setup Tmux---
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+#ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
 
 #~~~~~~~~~~~~~~~~~~~~~~#
