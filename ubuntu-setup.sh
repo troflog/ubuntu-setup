@@ -150,13 +150,13 @@ workon neovim2
 pip install neovim
 deactivate
 #Now that you've noted the interpreter paths, add the following to your init.vim file:
-#let g:python_host_prog = '/full/path/to/neovim2/bin/python'
-#let g:python3_host_prog = '/full/path/to/neovim3/bin/python'
+#let g:python_host_prog = '/home/tbf/.vens/neovim2/bin/python'
+#let g:python3_host_prog = '/home/tbf/.vens/neovim3/bin/python'
 
 
 
 #---Setup Tmux---
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+#ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
 
 #~~~~~~~~~~~~~~~~~~~~~~#
