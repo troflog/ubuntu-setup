@@ -106,7 +106,7 @@ export WORKON_HOME=~/.vens
 #Need these since we are instaling virtualenvwrapper with the --user tag
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+"export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 
 #Create this directory
 mkdir $WORKON_HOME
