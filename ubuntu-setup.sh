@@ -128,6 +128,17 @@ deactivate
 echo 'alias pys="workon pys"' >>  ~/.bashrc
 echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xargs pip install -U"' >>  ~/.bashrc
 
+#-----Setup Vim------
+
+#Install bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#Clone my vimrc
+git clone https://github.com/troflog/dotfiles.git
+#Make a symlink to the vimrc file
+ln -s ~/dotfiles/.vimrc  ~/.vimrc
+
+
+
 
 
 #-----Setup Neovim-------
@@ -140,6 +151,9 @@ ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim
 #Download plug from repo
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    
+    
+    
 #Make a Python environments for python neovim package
 mkvirtualenv  -p 'which python3' neovim3
 workon neovim3
@@ -155,23 +169,26 @@ deactivate
 
 
 
-#---Setup Tmux---
-#ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-
-
 #~~~~~~~~~~~~~~~~~~~~~~#
 #      SETTINGS        #
 #~~~~~~~~~~~~~~~~~~~~~~#
-# Solarized dircolors
 
-#Switch capslock and esc
-#setxkbmap -option caps:swapescape
 
-#Set monokai for terminal
-#git clone git://github.com/pricco/gnome-terminal-colors-monokai.git
-#cd gnome-terminal-colors-monokai
-#./install.sh
-#echo 'eval "dircolors ~/.dir_colors/dircolors"' >> ~/.bashrc
+#~~~~~~~~~~~~~~~~~~~~~~#
+#    GITHUB REPOS      #
+#~~~~~~~~~~~~~~~~~~~~~~#
+
+#---Clone folders I always wants to have---
+
+#Network course
+git clone https://github.com/troflog/network_course.git
+#Hacking course
+git clone https://github.com/troflog/hack_course.git
+
+
+#~~~~~~~~~~~~~~~~~~~~~~#
+#    INITIALIZATION    #
+#~~~~~~~~~~~~~~~~~~~~~~#
 
 #Restart Apache
 sudo /etc/init.d/apache2 restart
