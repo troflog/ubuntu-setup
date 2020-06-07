@@ -74,6 +74,11 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 #      SETUP        #
 #~~~~~~~~~~~~~~~~~~~#
 
+
+#---Git----
+git config --global user.email "troflog@gmail.com"
+git config --global user.name "TBF"
+
 #---Arc-theme---
 sudo add-apt-repository ppa:noobslab/themes
 sudo apt-get update
