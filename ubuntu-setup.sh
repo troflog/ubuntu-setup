@@ -25,6 +25,8 @@ sudo add-apt-repository -y ppa:neovim-ppa/stable
 
 
 #-----ADDING SOFTWARES------
+
+
 echo 'ADDING SOFTWARES'
 
 #-----Many different softwares----
@@ -36,7 +38,7 @@ silversearcher-ag virtualbox zsh powerline fonts-powerline
 
 
 #---Git----
-git config --global user.email "troflog@gmail.com"
+git config --global user.email "troflog@gmail.com" &&
 git config --global user.name "TBF"
 
 
@@ -67,7 +69,8 @@ echo 'alias pys="conda activate pys"' >>  ~/.bashrc
 echo 'alias pysout="conda deactivate"' >>  ~/.bashrc
 
 #---R---
-sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
+sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | \
+     sudo tee -a /etc/apt/sources.list
 gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
 gpg -a --export E084DAB9 | sudo apt-key add -
 sudo aptitude update
