@@ -19,7 +19,7 @@ echo 'INSTALL ALL SOFTWARES'
 echo 'ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES'
 sudo apt -y update
 sudo apt -y upgrade
-sudo apt-get -y install software-properties-common
+sudo apt -y install software-properties-common && 
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 
 
@@ -28,30 +28,43 @@ sudo add-apt-repository -y ppa:neovim-ppa/stable
 echo 'ADDING SOFTWARES'
 
 #-----Many different softwares----
-sudo apt -y install curl vim-gnome  \
+sudo apt -y install curl   \
 python-dev python3-dev  python3-pip git \
-gdebi-core nodejs npm apacshe2 tmux gnome-tweak-tool dconf-tools \
-neovim texlive-full texstudio gnome-shell-extensions gnome-session \
-silversearcher-ag virtualbox   
+gdebi-core nodejs npm tmux gnome-tweak-tool  \
+neovim dpkg wget texlive-full texstudio gnome-shell-extensions gnome-session \
+silversearcher-ag virtualbox zsh powerline fonts-powerline
 
 
-#----Vscode---
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt install apt-transport-https
-sudo apt update
-sudo apt -y install code
+#---Git----
+git config --global user.email "troflog@gmail.com"
+git config --global user.name "TBF"
 
 
 #---Chrome browsers---
 #sudo echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
-wget https://dl-ssl.google.com/linux/linux_signing_key.pub
-sudo apt-key add linux_signing_key.pub
-sudo apt update 
-sudo apt install google-chrome-stable
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+sudo dpkg -i google-chrome-stable_current_amd64.deb
 
-
+#-- Miniconda --
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &&
+chmod +x Miniconda3-latest-Linux-x86_64.sh &&
+./Miniconda3-latest-Linux-x86_64.sh &&
+echo "Setup miniconda" >> ~/.bashrc &&
+echo 'source ~/miniconda3/etc/profile.d/conda.sh' >> ~/.bashrc &&
+echo 'if [[ -z ${CONDA_PREFIX+x} ]]; then' >> ~/.bashrc &&
+echo '    export PATH="~/conda/bin:$PATH"'  >> ~/.bashrc &&
+echo 'fi'                                  >> ./.bashrc &&
+conda config --add channels conda-forge  &&
+conda config --set channel_priority strict &&
+#Conda autocomplete
+conda install -c conda-forge conda-bash-completion &&
+echo 'CONDA_ROOT=~/miniconda3'  >> ~/.bashrc && 
+echo 'if [[ -r $CONDA_ROOT/etc/profile.d/bash_completion.sh ]]; then'  >> ~/.bashrc && 
+echo '    source $CONDA_ROOT/etc/profile.d/bash_completion.sh'  >> ~/.bashrc && 
+echo 'fi'  >> ~/.bashrc && 
+conda create --name pys &&
+echo 'alias pys="conda activate pys"' >>  ~/.bashrc
+echo 'alias pysout="conda deactivate"' >>  ~/.bashrc
 
 #---R---
 sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
@@ -66,7 +79,7 @@ wget https://download1.rstudio.org/rstudio-xenial-1.1.442-amd64.deb
 sudo gdebi rstudio-xenial-1.1.463-amd64.deb 
 printf '\nexport QT_STYLE_OVERRIDE=gtk\n' | sudo tee -a ~/.profile 
 
-#---Vim-plug
+#---Vim-plug for Neovim---
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -75,9 +88,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 #~~~~~~~~~~~~~~~~~~~#
 
 
-#---Git----
-git config --global user.email "troflog@gmail.com"
-git config --global user.name "TBF"
 
 #---Arc-theme---
 sudo add-apt-repository ppa:noobslab/themes
@@ -111,7 +121,7 @@ export WORKON_HOME=~/.vens
 #Need these since we are instaling virtualenvwrapper with the --user tag
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv
-"export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+#"export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 
 #Create this directory
 mkdir $WORKON_HOME
@@ -133,12 +143,12 @@ deactivate
 echo 'alias pys="workon pys"' >>  ~/.bashrc
 echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xargs pip install -U"' >>  ~/.bashrc
 
-#-----Setup Vim------
+#-----Setup Vim------#
 
 #Install bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim &&
 #Clone my vimrc
-git clone https://github.com/troflog/dotfiles.git
+git clone https://github.com/troflog/dotfiles.git &&
 #Make a symlink to the vimrc file
 ln -s ~/dotfiles/.vimrc  ~/.vimrc
 
@@ -146,7 +156,7 @@ ln -s ~/dotfiles/.vimrc  ~/.vimrc
 
 
 
-#-----Setup Neovim-------
+#-----Setup Neovim-------#
 #Clone my repo which contains my Neovim and Tmux configs
 git clone https://github.com/troflog/dotfiles.git ~/dotfiles
 #This is the folder where neovim settings are located
@@ -154,8 +164,6 @@ mkdir ~/.config/nvim
 #Make a symlink to the vimrc file
 ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim 
 #Download plug from repo
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     
     
     
@@ -194,7 +202,4 @@ git clone https://github.com/troflog/hack_course.git
 #~~~~~~~~~~~~~~~~~~~~~~#
 #    INITIALIZATION    #
 #~~~~~~~~~~~~~~~~~~~~~~#
-
-#Restart Apache
-sudo /etc/init.d/apache2 restart
 
