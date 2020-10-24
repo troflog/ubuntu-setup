@@ -31,7 +31,7 @@ echo 'ADDING SOFTWARES'
 
 #-----Many different softwares----
 sudo apt -y install curl   \
-python-dev python3-dev  python3-pip git \
+python-dev python3-dev  python3-pip vim-gtk git \
 gdebi-core nodejs npm tmux gnome-tweak-tool  \
 neovim dpkg wget texlive-full texstudio gnome-shell-extensions gnome-session \
 silversearcher-ag virtualbox zsh powerline fonts-powerline
