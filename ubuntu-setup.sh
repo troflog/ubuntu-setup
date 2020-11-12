@@ -51,13 +51,14 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &&
 chmod +x Miniconda3-latest-Linux-x86_64.sh &&
 ./Miniconda3-latest-Linux-x86_64.sh &&
-echo "Setup miniconda" >> ~/.bashrc &&
+echo "#Setup miniconda" >> ~/.bashrc &&
 echo 'source ~/miniconda3/etc/profile.d/conda.sh' >> ~/.bashrc &&
 echo 'if [[ -z ${CONDA_PREFIX+x} ]]; then' >> ~/.bashrc &&
 echo '    export PATH="~/conda/bin:$PATH"'  >> ~/.bashrc &&
 echo 'fi'                                  >> ./.bashrc &&
 conda config --add channels conda-forge  &&
 conda config --set channel_priority strict &&
+
 #Conda autocomplete
 conda install -c conda-forge conda-bash-completion &&
 echo 'CONDA_ROOT=~/miniconda3'  >> ~/.bashrc && 
@@ -154,6 +155,12 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim &
 git clone https://github.com/troflog/dotfiles.git &&
 #Make a symlink to the vimrc file
 ln -s ~/dotfiles/.vimrc  ~/.vimrc
+#Run PluginInstall in vim, and then
+sudo apt install build-essential cmake vim python3-dev &&
+cd ~/.vim/bundle/YouCompleteMe &&
+python3 install.py --all
+
+
 
 
 
