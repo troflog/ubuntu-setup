@@ -147,6 +147,8 @@ deactivate
 echo 'alias pys="workon pys"' >>  ~/.bashrc
 echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xargs pip install -U"' >>  ~/.bashrc
 
+echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean - y" >>  ~/.bashrc
+
 #-----Setup Vim------#
 
 #Install bundle
