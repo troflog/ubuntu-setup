@@ -37,11 +37,6 @@ neovim dpkg wget texlive-full texstudio gnome-shell-extensions gnome-session \
 silversearcher-ag virtualbox zsh powerline fonts-powerline
 
 
-#---Git----
-git config --global user.email "troflog@gmail.com" &&
-git config --global user.name "TBF"
-
-
 #---Chrome browsers---
 #sudo echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
@@ -91,7 +86,11 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 #      SETUP        #
 #~~~~~~~~~~~~~~~~~~~#
 
-
+#---Git----
+git config --global user.email "troflog@gmail.com" &&
+git config --global user.name "TBF"
+git config --global alias.lg1 "log --graph --all --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short"
+git config --global alias.lg2 "log --graph --oneline --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 
 #---Arc-theme---
 sudo add-apt-repository ppa:noobslab/themes
@@ -116,8 +115,6 @@ sudo make install
 pip3 install --user pipenv
 pip3 install --user virtualenv
 pip3 install --user virtualenvwrapper
-
-
 
 # First we export the WORKON_HOME variable which contains the directory in which our
 # virtual environments are to be stored. Let's mak this ~/.virtualenvs
@@ -161,11 +158,6 @@ ln -s ~/dotfiles/.vimrc  ~/.vimrc
 sudo apt install build-essential cmake vim python3-dev &&
 cd ~/.vim/bundle/YouCompleteMe &&
 python3 install.py --all
-
-
-
-
-
 
 
 #-----Setup Neovim-------#
