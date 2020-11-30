@@ -89,8 +89,9 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 #---Git----
 git config --global user.email "troflog@gmail.com" &&
 git config --global user.name "TBF"
-git config --global alias.lg1 "log --graph --all --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short"
-git config --global alias.lg2 "log --graph --oneline --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
+#Printing a nice tree version of the commit story
+git config --global alias.lg1 "log --graph --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short"
+git config --global alias.lg2 "log --graph --all --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
 
 #---Arc-theme---
 sudo add-apt-repository ppa:noobslab/themes
