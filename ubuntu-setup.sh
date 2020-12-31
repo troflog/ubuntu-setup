@@ -107,8 +107,12 @@ git clone https://github.com/troflog/dotfiles.git &&
 ln -s ~/dotfiles/.vimrc  ~/.vimrc
 #Run PluginInstall in vim, and then
 sudo apt install build-essential cmake vim python3-dev &&
-cd ~/.vim/bundle/YouCompleteMe &&
+cd ~/.vim/bundle/youcompleteme &&
 python3 install.py --all
+cd ~/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm &&
+mv .ycm_extra_conf.py .ycm_extra_conf.pyold
+cp ~/dotfiles/.ycm_extra_conf.py .ycm_extra_conf.py 
+
 
 #~~~~~~~~~~~~~~~~~~~~~~#
 #      SETTINGS        #
