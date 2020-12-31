@@ -26,15 +26,17 @@ sudo add-apt-repository -y ppa:neovim-ppa/stable
 
 #-----ADDING SOFTWARES------
 
-
 echo 'ADDING SOFTWARES'
 
 #-----Many different softwares----
 sudo apt -y install curl   \
 python-dev python3-dev  python3-pip vim-gtk git \
-gdebi-core nodejs npm tmux gnome-tweak-tool  \
-neovim dpkg wget texlive-full texstudio gnome-shell-extensions gnome-session \
+gdebi-core nodejs npm tmux gnome-tweak-tool dpkg wget   \
+neovim gnome-shell-extensions gnome-session \
 silversearcher-ag virtualbox zsh powerline fonts-powerline
+
+#---Latex---
+sudo apt install texlive-full texstudio
 
 
 #---Chrome browsers---
@@ -53,14 +55,16 @@ echo '    export PATH="~/conda/bin:$PATH"'  >> ~/.bashrc &&
 echo 'fi'                                  >> ./.bashrc &&
 conda config --add channels conda-forge  &&
 conda config --set channel_priority strict &&
-
 #Conda autocomplete
 conda install -c conda-forge conda-bash-completion &&
 echo 'CONDA_ROOT=~/miniconda3'  >> ~/.bashrc && 
 echo 'if [[ -r $CONDA_ROOT/etc/profile.d/bash_completion.sh ]]; then'  >> ~/.bashrc && 
 echo '    source $CONDA_ROOT/etc/profile.d/bash_completion.sh'  >> ~/.bashrc && 
 echo 'fi'  >> ~/.bashrc && 
+#Make a standard library
 conda create --name pys &&
+conda activate pys &&
+conda install jedi numpy scipy matplotlib  ipython jupyter pandas sympy nose neovim &&
 echo 'alias pys="conda activate pys"' >>  ~/.bashrc
 echo 'alias pysout="conda deactivate"' >>  ~/.bashrc
 
@@ -78,13 +82,9 @@ wget https://download1.rstudio.org/rstudio-xenial-1.1.442-amd64.deb
 sudo gdebi rstudio-xenial-1.1.463-amd64.deb 
 printf '\nexport QT_STYLE_OVERRIDE=gtk\n' | sudo tee -a ~/.profile 
 
-#---Vim-plug for Neovim---
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-#~~~~~~~~~~~~~~~~~~~#
-#      SETUP        #
-#~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#      SETUP SOFTWARE     #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #---Git----
 git config --global user.email "troflog@gmail.com" &&
@@ -97,62 +97,8 @@ git config credential.helper 'cache --timeout=10800' &&
 #Set default branch name to main and not master
 git config --global init.defaultBranch main
 
-#---Arc-theme---
-sudo add-apt-repository ppa:noobslab/themes
-sudo apt-get update
-sudo apt-get install arc-theme
-sudo add-apt-repository ppa:noobslab/icons
-sudo apt-get update
-sudo apt-get install arc-icons
-cd Download
-git clone https://github.com/micheleg/dash-to-dock.git
-cd dash-to-dock
-sudo makey
-sudo make install
 
-#---Setup Python-----
-#Update pip3 to latest version
-#pip3 install --user -U pip
-
-#Setup my python working environment. 
-#   -Install virtualenv and virtualenvwrappers
-#   -Make my main environement called pys
-pip3 install --user pipenv
-pip3 install --user virtualenv
-pip3 install --user virtualenvwrapper
-
-# First we export the WORKON_HOME variable which contains the directory in which our
-# virtual environments are to be stored. Let's mak this ~/.virtualenvs
-export WORKON_HOME=~/.vens
-#Need these since we are instaling virtualenvwrapper with the --user tag
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv
-#"export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-
-#Create this directory
-mkdir $WORKON_HOME
-#and put this export in the ~/.bashrc file so this variable gets automatically defined
-echo "export WORKON_HOME=$WORKON_HOME" >> ~/.bashrc
-echo "export VIRTUALENVWRAPPER_PYTHON=$VIRTUALENVWRAPPER_PYTHON" >> ~/.bashrc
-echo "export VIRTUALENVWRAPPER_VIRTUALENV=$VIRTUALENVWRAPPER_VIRTUALENV" >> ~/.bashrc
-echo "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=$VIRTUALENVWRAPPER_VIRTUALENV_ARGS" >> ~/.bashrc
-echo "source ~/.local/bin/virtualenvwrapper.sh" >> ~/.bashrc
-#Reload .bashrc
-cd
-source ~/.bashrc
-#Make a python3 virtual environment
-mkvirtualenv  -p 'which python3' pys
-workon pys
-pip install jedi numpy scipy matplotlib  ipython jupyter pandas sympy nose neovim 
-deactivate
-#Make a shortcut to my main environment
-echo 'alias pys="workon pys"' >>  ~/.bashrc
-echo 'alias pipup="pip freeze --local | grep -v \"^\-e\" | cut -d = -f 1  | xargs pip install -U"' >>  ~/.bashrc
-
-echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean - y" >>  ~/.bashrc
-
-#-----Setup Vim------#
-
+#---Vim---#
 #Install bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim &&
 #Clone my vimrc
@@ -163,33 +109,6 @@ ln -s ~/dotfiles/.vimrc  ~/.vimrc
 sudo apt install build-essential cmake vim python3-dev &&
 cd ~/.vim/bundle/YouCompleteMe &&
 python3 install.py --all
-
-
-#-----Setup Neovim-------#
-#Clone my repo which contains my Neovim and Tmux configs
-git clone https://github.com/troflog/dotfiles.git ~/dotfiles
-#This is the folder where neovim settings are located
-mkdir ~/.config/nvim
-#Make a symlink to the vimrc file
-ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim 
-#Download plug from repo
-    
-    
-    
-#Make a Python environments for python neovim package
-mkvirtualenv  -p 'which python3' neovim3
-workon neovim3
-pip install neovim
-deactivate
-mkvirtualenv  -p 'which python2' neovim2
-workon neovim2
-pip install neovim
-deactivate
-#Now that you've noted the interpreter paths, add the following to your init.vim file:
-#let g:python_host_prog = '/home/tbf/.vens/neovim2/bin/python'
-#let g:python3_host_prog = '/home/tbf/.vens/neovim3/bin/python'
-
-
 
 #~~~~~~~~~~~~~~~~~~~~~~#
 #      SETTINGS        #
