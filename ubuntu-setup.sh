@@ -97,7 +97,6 @@ git config credential.helper 'cache --timeout=10800' &&
 #Set default branch name to main and not master
 git config --global init.defaultBranch main
 
-
 #---Vim---#
 #Install bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim &&
@@ -113,6 +112,27 @@ cd ~/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm &&
 mv .ycm_extra_conf.py .ycm_extra_conf.pyold
 cp ~/dotfiles/.ycm_extra_conf.py .ycm_extra_conf.py 
 
+#---Neovim---#
+#Clone my repo which contains my Neovim and Tmux configs
+#This is the folder where neovim settings are located
+mkdir ~/.config/nvim
+#Make a symlink to the vimrc file
+ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim 
+#Download plug from repo
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#Make a Python environments for python neovim package
+mkvirtualenv  -p 'which python3' neovim3
+workon neovim3
+pip install neovim
+deactivate
+mkvirtualenv  -p 'which python2' neovim2
+workon neovim2
+pip install neovim
+deactivate
+#Now that you've noted the interpreter paths, add the following to your init.vim file:
+#let g:python_host_prog = '/home/tbf/.vens/neovim2/bin/python'
+#let g:python3_host_prog = '/home/tbf/.vens/neovim3/bin/python'
 
 #~~~~~~~~~~~~~~~~~~~~~~#
 #      SETTINGS        #
