@@ -122,17 +122,14 @@ ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 #Make a Python environments for python neovim package
-mkvirtualenv  -p 'which python3' neovim3
-workon neovim3
-pip install neovim
-deactivate
-mkvirtualenv  -p 'which python2' neovim2
-workon neovim2
-pip install neovim
-deactivate
+
+conda create --name neovim3 &&
+conda activate neovim3 && 
+conda install neovim
+conda deactivate
 #Now that you've noted the interpreter paths, add the following to your init.vim file:
-#let g:python_host_prog = '/home/tbf/.vens/neovim2/bin/python'
-#let g:python3_host_prog = '/home/tbf/.vens/neovim3/bin/python'
+#let g:python_host_prog = '/home/tbf/miniconda3/envs/neovim
+#let g:python3_host_prog = '/home/tbf/miniconda3/envs/neovim3
 
 #~~~~~~~~~~~~~~~~~~~~~~#
 #      SETTINGS        #
