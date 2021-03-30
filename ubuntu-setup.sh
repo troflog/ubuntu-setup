@@ -127,8 +127,13 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 conda create --name neovim3 &&
 conda activate neovim3 && 
-conda install neovim
+conda install -y neovim &&
 conda deactivate
+conda create --name neovim python=2.7 &&
+conda activate -y neovim && 
+conda install neovim &&
+conda deactivate
+pip3 install --user jedi
 #Now that you've noted the interpreter paths, add the following to your init.vim file:
 #let g:python_host_prog = '/home/tbf/miniconda3/envs/neovim
 #let g:python3_host_prog = '/home/tbf/miniconda3/envs/neovim3
