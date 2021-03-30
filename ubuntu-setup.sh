@@ -118,6 +118,8 @@ cp ~/dotfiles/.ycm_extra_conf.py .ycm_extra_conf.py
 mkdir ~/.config/nvim
 #Make a symlink to the vimrc file
 ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim 
+#Make a symlink to init.vim placed in home folder for easy access 
+ln -s ~/dotfiles/init.vim  ~/init.vim 
 #Download plug from repo
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
