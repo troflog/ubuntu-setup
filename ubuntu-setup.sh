@@ -67,7 +67,7 @@ conda activate pys &&
 conda install jedi numpy scipy matplotlib  ipython jupyter pandas sympy nose neovim &&
 echo 'alias pys="conda activate pys"' >>  ~/.bashrc
 echo 'alias pysout="conda deactivate"' >>  ~/.bashrc
-echo 'alias pysup="pys && conda update --all && pysout"' >>  ~/.bashrc
+echo 'alias pysup="pys && conda update -y --all && pysout"' >>  ~/.bashrc
 
 #---R---
 sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | \
