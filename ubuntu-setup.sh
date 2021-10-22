@@ -33,7 +33,11 @@ sudo apt -y install curl   \
 python-dev python3-dev  python3-pip vim-gtk git \
 gdebi-core nodejs npm tmux gnome-tweak-tool dpkg wget   \
 neovim gnome-shell-extensions gnome-session \
-silversearcher-ag virtualbox zsh powerline fonts-powerline
+silversearcher-ag virtualbox zsh powerline fonts-powerline \
+
+#-----Nodejs >12 ------
+dirmngr apt-transport-https lsb-release ca-certificates &&
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
 #---Latex---
 sudo apt install texlive-full texstudio
@@ -94,24 +98,23 @@ git config --global user.name "TBF" &&
 git config --global alias.lg1 "log --graph --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short" &&
 git config --global alias.lg2 "log --graph --all --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
 #Wait 3 hours before asking for username and password for git push after first time
-git config credential.helper 'cache --timeout=10800' &&
+git config credential.helper 'cache' &&
 #Set default branch name to main and not master
-git config --global init.defaultBranch main
+git config --global init.defaultBranch main &&
+git config --global core.editor "nvim"
 
 #---Vim---#
-#Install bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim &&
+#Install vim-plug 
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 #Clone my vimrc
 git clone https://github.com/troflog/dotfiles.git &&
 #Make a symlink to the vimrc file
 ln -s ~/dotfiles/.vimrc  ~/.vimrc
-#Run PluginInstall in vim, and then
-sudo apt install build-essential cmake vim python3-dev &&
-cd ~/.vim/bundle/youcompleteme &&
-python3 install.py --all
-cd ~/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm &&
-mv .ycm_extra_conf.py .ycm_extra_conf.pyold
-cp ~/dotfiles/.ycm_extra_conf.py .ycm_extra_conf.py 
+#sudo apt install clangd
+sudo apt install clangd
+#Install coc.nvim extensions
+vim -c 'CocInstall -sync coc-vimls coc-pyright coc-clangd coc-html|q'
 
 #---Neovim---#
 #Clone my repo which contains my Neovim and Tmux configs
@@ -125,7 +128,6 @@ ln -s ~/dotfiles/init.vim  ~/init.vim &&
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &&
 #Make a Python environments for python neovim package
-
 conda create --name neovim3 &&
 conda activate neovim3 && 
 conda install -y neovim &&
