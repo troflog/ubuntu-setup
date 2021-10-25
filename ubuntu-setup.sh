@@ -115,6 +115,10 @@ ln -s ~/dotfiles/.vimrc  ~/.vimrc
 sudo apt install clangd
 #Install coc.nvim extensions
 vim -c 'CocInstall -sync coc-vimls coc-pyright coc-clangd coc-html|q'
+#Make coc-pyright able to find virutal env
+echo '#!/bin/bash\npython "$@"' >> ~/pypath &&
+chmod +x pypath
+#This goest to .vim/coc-settings.json "python.pythonPath": "~/pypath"
 
 #---Neovim---#
 #Clone my repo which contains my Neovim and Tmux configs
