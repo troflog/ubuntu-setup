@@ -23,7 +23,6 @@ sudo apt -y install software-properties-common &&
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 
 
-
 #-----ADDING SOFTWARES------
 
 echo 'ADDING SOFTWARES'
@@ -36,7 +35,7 @@ neovim gnome-shell-extensions gnome-session \
 silversearcher-ag virtualbox zsh powerline fonts-powerline \
 
 #-----Nodejs >12 ------
-sudo apt install dirmngr apt-transport-https lsb-release ca-certificates && curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt install dirmngr apt-transport-https lsb-release ca-certificates && curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &&
 sudo apt -y install nodejs
 
 #---Latex---
@@ -72,6 +71,7 @@ conda install jedi numpy scipy matplotlib  ipython jupyter pandas sympy nose neo
 echo 'alias pys="conda activate pys"' >>  ~/.bashrc
 echo 'alias pysout="conda deactivate"' >>  ~/.bashrc
 echo 'alias pysup="pys && conda update -y --all && pysout"' >>  ~/.bashrc
+cat conda_commands.txt >> ~/.bashrc
 
 #---R---
 sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | \
@@ -103,6 +103,12 @@ git config credential.helper 'cache' &&
 git config --global init.defaultBranch main &&
 git config --global core.editor "nvim"
 
+#--Vim and Neovim--#
+#Make coc-pyright able to find virutal env
+echo '#!/bin/bash' >> ~/pypath &&
+echo 'python "$@"' >> ~/pypath &&
+chmod +x pypath
+
 #---Vim---#
 #Install vim-plug 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -113,11 +119,8 @@ git clone https://github.com/troflog/dotfiles.git &&
 ln -s ~/dotfiles/.vimrc  ~/.vimrc
 #sudo apt install clangd
 sudo apt install clangd
-#Install coc.nvim extensions
-vim -c 'CocInstall -sync coc-vimls coc-pyright coc-clangd coc-html|q'
-#Make coc-pyright able to find virutal env
-echo '#!/bin/bash\npython "$@"' >> ~/pypath &&
-chmod +x pypath
+#install coc.nvim extensions
+nvim -c 'cocinstall -sync coc-vimls coc-pyright coc-clangd coc-html|q'
 #This goest to .vim/coc-settings.json "python.pythonPath": "~/pypath"
 
 #---Neovim---#
