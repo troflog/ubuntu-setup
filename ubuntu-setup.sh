@@ -20,7 +20,7 @@ echo 'ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES'
 sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y install software-properties-common && 
-sudo add-apt-repository -y ppa:neovim-ppa/stable
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
 
 
 #-----ADDING SOFTWARES------
@@ -29,9 +29,9 @@ echo 'ADDING SOFTWARES'
 
 #-----Many different softwares----
 sudo apt -y install curl   \
-python-dev python3-dev  python3-pip vim-gtk git \
+python-dev python3-dev  python3-pip neovim vim-gtk git \
 gdebi-core nodejs npm tmux gnome-tweak-tool dpkg wget   \
-neovim gnome-shell-extensions gnome-session \
+gnome-shell-extensions gnome-session \
 silversearcher-ag virtualbox zsh powerline fonts-powerline \
 
 #-----Nodejs >12 ------
