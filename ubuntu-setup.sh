@@ -107,7 +107,9 @@ git config --global core.editor "nvim"
 #Make coc-pyright able to find virutal env
 echo '#!/bin/bash' >> ~/pypath &&
 echo 'python "$@"' >> ~/pypath &&
-chmod +x pypath
+chmod +x pypath 
+#Copy debugadpater .vimspector.json to the current location
+echo 'alias vimspejson="rm .vimspector.json && cp ~/dotfiles/.vimspector.json .vimspector.json"' >>  ~/.bashrc
 
 #---Vim---#
 #Install vim-plug 
