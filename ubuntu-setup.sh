@@ -31,7 +31,7 @@ echo 'ADDING SOFTWARES'
 sudo apt -y install curl   \
 python-dev python3-dev  python3-pip neovim vim-gtk git \
 gdebi-core nodejs npm tmux gnome-tweak-tool dpkg wget   \
-gnome-shell-extensions gnome-session \
+gnome-shell-extensions gnome-session xclip \
 silversearcher-ag virtualbox zsh powerline fonts-powerline \
 
 #-----Nodejs >12 ------
