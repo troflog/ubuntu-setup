@@ -146,6 +146,8 @@ conda activate -y neovim &&
 conda install neovim &&
 conda deactivate
 pip3 install --user jedi
+echo 'alias neopysup="conda activate neovim && conda update -y --all && conda deactivate && conda activate neovim3 && conda update -y --all && conda deactivate"' >> ~/.bashrc
+
 #Now that you've noted the interpreter paths, add the following to your init.vim file:
 #let g:python_host_prog = '/home/tbf/miniconda3/envs/neovim
 #let g:python3_host_prog = '/home/tbf/miniconda3/envs/neovim3
@@ -173,5 +175,7 @@ git clone https://github.com/troflog/hack_course.git
 
 #--- .bashrc aliases ---
 
-echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y && pysup"' >>  ~/.bashrc
+echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y &&'\
+     'sudo apt autoremove -y && sudo apt clean -y'\
+     ' && sudo apt autoclean -y && pysup && neopysup"' >>  ~/.bashrc
 
