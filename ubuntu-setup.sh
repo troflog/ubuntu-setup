@@ -22,7 +22,6 @@ sudo apt -y upgrade
 sudo apt -y install software-properties-common && 
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 
-
 #-----ADDING SOFTWARES------
 
 echo 'ADDING SOFTWARES'
@@ -41,6 +40,11 @@ sudo apt -y install nodejs
 #---Latex---
 sudo apt install texlive-full texstudio
 
+#Snipping tool
+sudo wget -q -O - https://screenrec.com/download/pub.asc | sudo apt-key add -
+sudo add-apt-repository 'deb https://screenrec.com/download/ubuntu stable main'
+sudo apt update
+sudo apt install screenrec
 
 #---Chrome browsers---
 #sudo echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
