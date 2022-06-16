@@ -19,7 +19,6 @@ echo 'INSTALL ALL SOFTWARES'
 echo 'ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES'
 sudo apt -y update &&
 sudo apt -y upgrade &&
-sudo apt -y install software-properties-common && 
 sudo add-apt-repository -y ppa:neovim-ppa/unstable &&
 
 
@@ -30,9 +29,7 @@ echo 'ADDING SOFTWARES'
 #-----Many different softwares----
 sudo apt -y install curl   \
 python-dev python3-dev  python3-pip neovim vim-gtk git \
-gdebi-core nodejs npm tmux gnome-tweak-tool dpkg wget   \
-gnome-shell-extensions gnome-session xclip \
-silversearcher-ag virtualbox zsh powerline fonts-powerline \
+nodejs npm tmux && 
 
 #-----Nodejs >12 ------
 sudo apt install dirmngr apt-transport-https lsb-release ca-certificates && curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &&
@@ -54,18 +51,17 @@ git config credential.helper 'cache' &&
 git config --global init.defaultBranch main &&
 git config --global core.editor "nvim"
 
-#--Vim and Neovim--#
+#--Neovim--#
+#Get dot file
+git clone https://github.com/troflog/dotfiles.git &&
 #Make coc-pyright able to find virutal env
 echo '#!/bin/bash' >> ~/pypath &&
 echo 'python "$@"' >> ~/pypath &&
 chmod +x pypath &&
 #Copy debugadpater .vimspector.json to the current location
 echo 'alias vimspejson="rm .vimspector.json && cp ~/dotfiles/.vimspector.json .vimspector.json"' >>  ~/.bashrc &&
-
-
-#---Neovim---#
 #This is the folder where neovim settings are located
-mkdir ~/.config/nvim
+mkdir ~/.config/nvim &&
 #Make a symlink to the vimrc file
 ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim &&
 #Make a symlink to init.vim placed in home folder for easy access 

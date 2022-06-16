@@ -2,3 +2,7 @@
 sudo dpkg-reconfigure keyboard-configuration
 
 # Setup network card
+ip link show
+ifconfig eth0 up #eth0 is the name of the network card
+sudo dhclient eth0 #Get a new ip adress
+Change the file /etc/network/1-netcfg.yaml
