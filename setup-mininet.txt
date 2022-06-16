@@ -1,0 +1,4 @@
+# Change keyboard
+sudo dpkg-reconfigure keyboard-configuration
+
+# Setup network card
