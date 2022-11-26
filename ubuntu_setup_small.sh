@@ -19,8 +19,8 @@ echo 'INSTALL ALL SOFTWARES'
 echo 'ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES'
 sudo apt -y update &&
 sudo apt -y upgrade &&
-sudo apt -y install software-properties-common && 
 sudo add-apt-repository -y ppa:neovim-ppa/unstable &&
+
 
 #-----ADDING SOFTWARES------
 
@@ -29,67 +29,12 @@ echo 'ADDING SOFTWARES'
 #-----Many different softwares----
 sudo apt -y install curl   \
 python-dev python3-dev  python3-pip neovim vim-gtk git \
-gdebi-core nodejs npm tmux gnome-tweak-tool dpkg wget   \
-gnome-shell-extensions gnome-session xclip \
-silversearcher-ag virtualbox zsh powerline fonts-powerline \
+nodejs npm tmux && 
 
 #-----Nodejs >12 ------
-sudo apt install dirmngr apt-transport-https lsb-release ca-certificates && curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - &&
-sudo apt -y install nodejs
-
-#---Latex---
-sudo apt install texlive-full texstudio
-
-#Snipping tool
-sudo wget -q -O - https://screenrec.com/download/pub.asc | sudo apt-key add -
-sudo add-apt-repository 'deb https://screenrec.com/download/ubuntu stable main'
-sudo apt update
-sudo apt install screenrec
-
-#---Chrome browsers---
-#sudo echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-
-#-- Miniconda --
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &&
-chmod +x Miniconda3-latest-Linux-x86_64.sh &&
-./Miniconda3-latest-Linux-x86_64.sh &&
-echo "#Setup miniconda" >> ~/.bashrc &&
-echo 'source ~/miniconda3/etc/profile.d/conda.sh' >> ~/.bashrc &&
-echo 'if [[ -z ${CONDA_PREFIX+x} ]]; then' >> ~/.bashrc &&
-echo '    export PATH="~/conda/bin:$PATH"'  >> ~/.bashrc &&
-echo 'fi'                                  >> ./.bashrc &&
-conda config --add channels conda-forge  &&
-conda config --set channel_priority strict &&
-#Conda autocomplete
-conda install -c conda-forge conda-bash-completion &&
-echo 'CONDA_ROOT=~/miniconda3'  >> ~/.bashrc && 
-echo 'if [[ -r $CONDA_ROOT/etc/profile.d/bash_completion.sh ]]; then'  >> ~/.bashrc && 
-echo '    source $CONDA_ROOT/etc/profile.d/bash_completion.sh'  >> ~/.bashrc && 
-echo 'fi'  >> ~/.bashrc && 
-#Make a standard library
-conda create --name pys &&
-conda activate pys &&
-conda install jedi numpy scipy matplotlib  ipython jupyter pandas sympy nose neovim &&
-echo 'alias pys="conda activate pys"' >>  ~/.bashrc
-echo 'alias pysout="conda deactivate"' >>  ~/.bashrc
-echo 'alias pysup="pys && conda update -y --all && pysout"' >>  ~/.bashrc
-cat conda_commands.txt >> ~/.bashrc
-
-#---R---
-sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | \
-     sudo tee -a /etc/apt/sources.list
-gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
-gpg -a --export E084DAB9 | sudo apt-key add -
-sudo aptitude update
-sudo aptitude -y install gdebi libxml2-dev libssl-dev libcurl4-openssl-dev libopenblas-dev r-base r-base-dev
-
-#---Rstudio----
-cd ~/Downloads
-wget https://download1.rstudio.org/rstudio-xenial-1.1.442-amd64.deb
-sudo gdebi rstudio-xenial-1.1.463-amd64.deb 
-printf '\nexport QT_STYLE_OVERRIDE=gtk\n' | sudo tee -a ~/.profile 
+sudo apt install dirmngr apt-transport-https lsb-release ca-certificates &&
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&
+sudo apt -y install nodejs &&
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #      SETUP SOFTWARE     #
@@ -107,18 +52,17 @@ git config credential.helper 'cache' &&
 git config --global init.defaultBranch main &&
 git config --global core.editor "nvim"
 
-#--Vim and Neovim--#
+#--Neovim--#
+#Get dot file
+git clone https://github.com/troflog/dotfiles.git &&
 #Make coc-pyright able to find virutal env
 echo '#!/bin/bash' >> ~/pypath &&
 echo 'python "$@"' >> ~/pypath &&
 chmod +x pypath &&
 #Copy debugadpater .vimspector.json to the current location
 echo 'alias vimspejson="rm .vimspector.json && cp ~/dotfiles/.vimspector.json .vimspector.json"' >>  ~/.bashrc &&
-
-
-#---Neovim---#
 #This is the folder where neovim settings are located
-mkdir ~/.config/nvim
+mkdir ~/.config/nvim &&
 #Make a symlink to the vimrc file
 ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim &&
 #Make a symlink to init.vim placed in home folder for easy access 
