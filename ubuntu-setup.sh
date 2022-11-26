@@ -1,53 +1,38 @@
-#!/bin/bash
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#                       UBUNTU SETUP                #
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#####################################################
+#               UBUNTU SETUP                        #
+#####################################################
 
 
-#Script which install all my favorite application and
-#settings for Ubuntu
-#How to to run:
-#Navigate to folder where install script is located
-#Run script:
-#sudo ./ubuntu-setup.sh
-echo 'INSTALL ALL SOFTWARES'
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#    ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES     #
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   ADDING SOFTWARES        # 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-echo 'ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES'
+#-- Updating sources --
 sudo apt -y update &&
 sudo apt -y upgrade &&
 sudo apt -y install software-properties-common && 
-sudo add-apt-repository -y ppa:neovim-ppa/unstable &&
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
 
-#-----ADDING SOFTWARES------
-
-echo 'ADDING SOFTWARES'
-
-#-----Many different softwares----
+#--- Base softwares ------
 sudo apt -y install curl   \
 python-dev python3-dev  python3-pip neovim vim-gtk git \
 gdebi-core nodejs npm tmux gnome-tweak-tool dpkg wget   \
 gnome-shell-extensions gnome-session xclip \
 silversearcher-ag virtualbox zsh powerline fonts-powerline \
+ripgrep
 
-#-----Nodejs >12 ------
-sudo apt install dirmngr apt-transport-https lsb-release ca-certificates && curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - &&
-sudo apt -y install nodejs
 
-#---Latex---
+#----- Nodejs ------
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash &&
+#Install latest version of node
+nvm install node
+
+#--- Latex ---
 sudo apt install texlive-full texstudio
 
-#Snipping tool
-sudo wget -q -O - https://screenrec.com/download/pub.asc | sudo apt-key add -
-sudo add-apt-repository 'deb https://screenrec.com/download/ubuntu stable main'
-sudo apt update
-sudo apt install screenrec
 
-#---Chrome browsers---
-#sudo echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
+#--- Chrome browsers ---
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
@@ -72,24 +57,19 @@ echo 'fi'  >> ~/.bashrc &&
 conda create --name pys &&
 conda activate pys &&
 conda install jedi numpy scipy matplotlib  ipython jupyter pandas sympy nose neovim &&
-echo 'alias pys="conda activate pys"' >>  ~/.bashrc
-echo 'alias pysout="conda deactivate"' >>  ~/.bashrc
-echo 'alias pysup="pys && conda update -y --all && pysout"' >>  ~/.bashrc
-cat conda_commands.txt >> ~/.bashrc
+echo 'alias pys="conda activate pys"' >>  ~/.bashrc &&
+echo 'alias pysout="conda deactivate"' >>  ~/.bashrc &&
+echo 'alias pysup="pys && conda update -y --all && pysout"' >>  ~/.bashrc &&
+cat conda_commands.txt >> ~/.bashrc &&
 
-#---R---
-sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | \
-     sudo tee -a /etc/apt/sources.list
-gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
-gpg -a --export E084DAB9 | sudo apt-key add -
-sudo aptitude update
-sudo aptitude -y install gdebi libxml2-dev libssl-dev libcurl4-openssl-dev libopenblas-dev r-base r-base-dev
+#---Neovim---#
 
-#---Rstudio----
-cd ~/Downloads
-wget https://download1.rstudio.org/rstudio-xenial-1.1.442-amd64.deb
-sudo gdebi rstudio-xenial-1.1.463-amd64.deb 
-printf '\nexport QT_STYLE_OVERRIDE=gtk\n' | sudo tee -a ~/.profile 
+sudo npm install -g pyright
+
+
+
+
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #      SETUP SOFTWARE     #
@@ -98,42 +78,20 @@ printf '\nexport QT_STYLE_OVERRIDE=gtk\n' | sudo tee -a ~/.profile
 #---Git----
 git config --global user.email "troflog@gmail.com" &&
 git config --global user.name "TBF" &&
-#Printing a nice tree version of the commit story
-git config --global alias.lg1 "log --graph --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short" &&
-git config --global alias.lg2 "log --graph --all --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
-#Wait 3 hours before asking for username and password for git push after first time
-git config credential.helper 'cache' &&
 #Set default branch name to main and not master
 git config --global init.defaultBranch main &&
+#Use neovim for git commit messages
 git config --global core.editor "nvim"
-
-#--Vim and Neovim--#
-#Make coc-pyright able to find virutal env
-echo '#!/bin/bash' >> ~/pypath &&
-echo 'python "$@"' >> ~/pypath &&
-chmod +x pypath &&
-#Copy debugadpater .vimspector.json to the current location
-echo 'alias vimspejson="rm .vimspector.json && cp ~/dotfiles/.vimspector.json .vimspector.json"' >>  ~/.bashrc &&
+#Make nice git log tree
+git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short" &&
+git config --global alias.lgl "log --graph --all --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" 
 
 
-#---Neovim---#
-#This is the folder where neovim settings are located
-mkdir ~/.config/nvim
-#Make a symlink to the vimrc file
-ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim &&
-#Make a symlink to init.vim placed in home folder for easy access 
-ln -s ~/dotfiles/init.vim  ~/init.vim && 
-#Install all vim plugins
-nvim -c 'PlugInstall|qa' &&
-#coc.nvim extensions
-nvim -c 'cocinstall -sync coc-vimls coc-pyright coc-clangd coc-html|qa' &&
 
 
 #~~~~~~~~~~~~~~~~~~~~~~#
-#    INITIALIZATION    #
+#   BASH ALIASES       #
 #~~~~~~~~~~~~~~~~~~~~~~#
-
-#--- .bashrc aliases ---
 
 echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y &&'\
      'sudo apt autoremove -y && sudo apt clean -y'\
