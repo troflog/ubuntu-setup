@@ -71,9 +71,7 @@ git config --global user.name "TBF" &&
 #Printing a nice tree version of the commit story
 git config --global alias.lg1 "log --graph --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short" &&
 git config --global alias.lg2 "log --graph --all --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
-#Wait 3 hours before asking for username and password for git push after first time
-git config credential.helper 'cache' &&
-#Set default branch name to main and not master
+#Set default branch name to main and ot master
 git config --global init.defaultBranch main &&
 git config --global core.editor "nvim"
 
