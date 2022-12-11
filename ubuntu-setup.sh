@@ -71,20 +71,23 @@ git config --global user.name "TBF" &&
 #Printing a nice tree version of the commit story
 git config --global alias.lg1 "log --graph --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short" &&
 git config --global alias.lg2 "log --graph --all --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
+
 #Set default branch name to main and ot master
 git config --global init.defaultBranch main &&
 git config --global core.editor "nvim"
 
-#--Vim and Neovim--#
-#Make coc-pyright able to find virutal env
-#echo '#!/bin/bash' >> ~/pypath &&
-#echo 'python "$@"' >> ~/pypath &&
-#chmod +x pypath &&
-##Copy debugadpater .vimspector.json to the current location
-#echo 'alias vimspejson="rm .vimspector.json && cp ~/dotfiles/.vimspector.json .vimspector.json"' >>  ~/.bashrc &&
+#Setup ssh
+#Check that you do not have this from before
+ssh-keygen -t ed25519 -C "troflog@gmail.com"
+ssh-add ~/.ssh/id_ed25519
+#Add key to GitHub accoount after. Use this to copy the key
+#to github
+cat ~/.ssh/id_ed25519.pub
 
-
-#---Neovim---#
+#--Neovim--#
+cd ~/.config &&
+rm -fr nvim && #Remove existing folder
+git clone git@github.com:troflog/neovim-setup.git nvim
 
 
 #~~~~~~~~~~~~~~~~~~~~~~#
