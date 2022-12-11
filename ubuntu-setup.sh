@@ -20,7 +20,7 @@ echo 'ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES'
 sudo apt -y update &&
 sudo apt -y upgrade &&
 sudo apt -y install software-properties-common && 
-sudo add-apt-repository -y ppa:neovim-ppa/unstable &&
+sudo add-apt-repository -y ppa:neovim-ppa/unstable 
 
 
 #-----ADDING SOFTWARES------
@@ -29,14 +29,34 @@ echo 'ADDING SOFTWARES'
 
 #-----Many different softwares----
 sudo apt -y install curl   \
-python-dev python3-dev  python3-pip neovim vim-gtk git \
-gdebi-core nodejs npm tmux gnome-tweak-tool dpkg wget   \
+python3-dev python3-pip neovim git \
+gdebi-core npm tmux gnome-tweak-tool dpkg wget   \
 gnome-shell-extensions gnome-session xclip \
 silversearcher-ag virtualbox zsh powerline fonts-powerline \
+ripgrep sqlite libsqlite3-dev ninja-build
+
+#----Neovim----
+sudo apt update && sudo apt -y upgrade
+
 
 #-----Nodejs >12 ------
 sudo apt install dirmngr apt-transport-https lsb-release ca-certificates && curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &&
-sudo apt -y install nodejs &&
+sudo apt -y install nodejs 
+
+#----Nerd fonts---
+
+#---Lua language server ---
+cd ~/.config/nvim &&
+git clone  --depth=1 https://github.com/sumneko/lua-language-server &&
+cd lua-language-server &&
+git submodule update --depth 1 --init --recursive &&
+cd 3rd/luamake &&
+./compile/install.sh &&
+cd ../.. &&
+./3rd/luamake/luamake rebuild
+
+#---Python language server ---
+npm i -g pyright
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #      SETUP SOFTWARE     #
@@ -56,24 +76,14 @@ git config --global core.editor "nvim"
 
 #--Vim and Neovim--#
 #Make coc-pyright able to find virutal env
-echo '#!/bin/bash' >> ~/pypath &&
-echo 'python "$@"' >> ~/pypath &&
-chmod +x pypath &&
-#Copy debugadpater .vimspector.json to the current location
-echo 'alias vimspejson="rm .vimspector.json && cp ~/dotfiles/.vimspector.json .vimspector.json"' >>  ~/.bashrc &&
+#echo '#!/bin/bash' >> ~/pypath &&
+#echo 'python "$@"' >> ~/pypath &&
+#chmod +x pypath &&
+##Copy debugadpater .vimspector.json to the current location
+#echo 'alias vimspejson="rm .vimspector.json && cp ~/dotfiles/.vimspector.json .vimspector.json"' >>  ~/.bashrc &&
 
 
 #---Neovim---#
-#This is the folder where neovim settings are located
-mkdir ~/.config/nvim
-#Make a symlink to the vimrc file
-ln -s ~/dotfiles/init.vim  ~/.config/nvim/init.vim &&
-#Make a symlink to init.vim placed in home folder for easy access 
-ln -s ~/dotfiles/init.vim  ~/init.vim && 
-#Install all vim plugins
-nvim -c 'PlugInstall|qa' &&
-#coc.nvim extensions
-nvim -c 'cocinstall -sync coc-vimls coc-pyright coc-clangd coc-html|qa' &&
 
 
 #~~~~~~~~~~~~~~~~~~~~~~#
