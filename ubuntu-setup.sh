@@ -33,11 +33,9 @@ python3-dev python3-pip neovim git \
 gdebi-core npm tmux gnome-tweak-tool dpkg wget   \
 gnome-shell-extensions gnome-session xclip \
 silversearcher-ag virtualbox zsh powerline fonts-powerline \
-ripgrep sqlite libsqlite3-dev ninja-build
+ripgrep sqlite libsqlite3-dev ninja-build neovim
 
 #----Neovim----
-sudo apt update && sudo apt -y upgrade
-
 
 #-----Nodejs >12 ------
 sudo apt install dirmngr apt-transport-https lsb-release ca-certificates && curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &&
@@ -54,6 +52,7 @@ cd 3rd/luamake &&
 ./compile/install.sh &&
 cd ../.. &&
 ./3rd/luamake/luamake rebuild
+
 
 #---Python language server ---
 npm i -g pyright
@@ -95,4 +94,7 @@ git config --global core.editor "nvim"
 echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y &&'\
      'sudo apt autoremove -y && sudo apt clean -y'\
      ' && sudo apt autoclean -y && pysup && neopysup"' >>  ~/.bashrc
+echo 'alias vim="nvim"' >> ~/.bashrc
+echo 'alias vi="nvim"' >> ~/.bashrc
+
 
