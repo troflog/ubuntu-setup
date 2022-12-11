@@ -1,0 +1,25 @@
+# Change keyboard
+sudo dpkg-reconfigure keyboard-configuration
+
+# Setup network card
+ip link show
+ifconfig eth0 up #eth0 is the name of the network card
+sudo dhclient eth0 #Get a new ip adress
+Change the file /etc/netplan/01-netcfg.yaml
+# This file describes the network interfaces available on your system
+# For more information, see netplan(5).
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: no 
+      addresses:
+        - 192.168.56.2/24 
+      nameservers:
+              addresses: [8.8.8.8, 8.8.4.4]
+    eth1:
+      dhcp4: yes
+
+#Setup SSH
+
