@@ -46,7 +46,7 @@ sudo apt -y install nodejs
 #----Nerd fonts---
 
 #---Lua language server ---
-cd ~/.config/nvim &&
+cd ~ #Place lua language server in home folder
 git clone  --depth=1 https://github.com/sumneko/lua-language-server &&
 cd lua-language-server &&
 git submodule update --depth 1 --init --recursive &&
