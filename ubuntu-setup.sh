@@ -50,7 +50,10 @@ git submodule update --depth 1 --init --recursive &&
 cd 3rd/luamake &&
 ./compile/install.sh &&
 cd ../.. &&
-./3rd/luamake/luamake rebuild
+./3rd/luamake/luamake rebuild &&
+echo 'export PATH="${HOME}/lua-language-server/bin:${PATH}"' >> ~/.bashrc &&
+source ~/.bashrc  &&
+execute $SHELL
 
 #Snipping tool
 sudo wget -q -O - https://screenrec.com/download/pub.asc | sudo apt-key add - &&
