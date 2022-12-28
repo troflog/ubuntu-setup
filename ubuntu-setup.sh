@@ -22,7 +22,27 @@ sudo apt -y upgrade &&
 sudo apt -y install software-properties-common && 
 sudo add-apt-repository -y ppa:neovim-ppa/unstable 
 
-#-----ADDING SOFTWARES------ echo 'ADDING SOFTWARES' -----Many different softwares---- sudo apt -y install curl   \ python3-dev python3-pip neovim git \ gdebi-core npm tmux gnome-tweak-tool dpkg wget   \ gnome-shell-extensions gnome-session xclip \ silversearcher-ag virtualbox zsh powerline fonts-powerline \ ripgrep sqlite libsqlite3-dev ninja-build neovim ----Neovim---- -----Nodejs >12 ------ sudo apt install dirmngr apt-transport-https lsb-release ca-certificates && curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && sudo apt -y install nodejs ----Nerd fonts--- ---Lua language server --- cd ~ #Place lua language server in home folder
+#-----ADDING SOFTWARES------
+echo 'ADDING SOFTWARES' 
+sudo apt -y install curl   \
+     python3-dev python3-pip neovim git \
+     gdebi-core npm tmux gnome-tweak-tool dpkg wget   \
+     gnome-shell-extensions gnome-session xclip \
+     silversearcher-ag virtualbox zsh powerline fonts-powerline \
+     ripgrep sqlite libsqlite3-dev ninja-build neovim
+
+#----Neovim----#
+
+#-----Nodejs >12 ------
+sudo apt install dirmngr apt-transport-https lsb-release ca-certificates &&
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &&
+sudo apt -y install nodejs
+
+#----Nerd fonts---
+
+#---Lua language server ---
+#Place lua language server in home folder
+cd ~ 
 git clone  --depth=1 https://github.com/sumneko/lua-language-server &&
 cd lua-language-server &&
 git submodule update --depth 1 --init --recursive &&
