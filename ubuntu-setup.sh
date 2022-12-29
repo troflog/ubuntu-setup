@@ -59,6 +59,11 @@ echo 'export PATH="${HOME}/lua-language-server/bin:${PATH}"' >> ~/.bashrc
 #---Python language server ---
 npm i -g pyright
 
+#---Python Debuggers ---
+conda create --name debugpy &&
+conda install debugpy &&
+conda deactivate
+
 #Snipping tool
 sudo wget -q -O - https://screenrec.com/download/pub.asc | sudo apt-key add - &&
 sudo add-apt-repository 'deb https://screenrec.com/download/ubuntu stable main' &&
@@ -92,6 +97,10 @@ cd ~/.config &&
 rm -fr nvim && #Remove existing folder
 git clone git@github.com:troflog/neovim-setup.git nvim
 
+#--Python
+conda create --name pys &&
+conda install debugpy numpy matplotlib seaborn scipy &&
+conda deactivate
 
 #~~~~~~~~~~~~~~~~~~~~~~#
 #    INITIALIZATION    #
