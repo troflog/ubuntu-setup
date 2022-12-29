@@ -10,25 +10,25 @@
 #Navigate to folder where install script is located
 #Run script:
 #sudo ./ubuntu-setup.sh
-echo 'INSTALL ALL SOFTWARES'
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#    ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES     #
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-echo 'ENABLE SOURCES, ADD PPAs AND UPDATE SOURCES'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#    ADDING SOFTWARE                     #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#Update and adding PPAs
 sudo apt -y update &&
 sudo apt -y upgrade &&
 sudo apt -y install software-properties-common && 
 sudo add-apt-repository -y ppa:neovim-ppa/unstable 
 
-#-----ADDING SOFTWARES------
+#Key softwares
 sudo apt -y install curl   \
      python3-dev python3-pip neovim git \
-     gdebi-core npm tmux gnome-tweak-tool dpkg wget   \
-     gnome-shell-extensions gnome-session xclip \
-     silversearcher-ag virtualbox zsh powerline fonts-powerline \
+     gdebi-core npm dpkg wget xclip \
+     silversearcher-ag zsh powerline fonts-powerline \
      ripgrep sqlite libsqlite3-dev ninja-build neovim
+
+#Tools 
+sudo apt -y install gnome-tweak-tool gnome-session tmux virtualbox gnome-shell-extensions 
 
 #-----Nodejs >12 ------
 sudo apt install dirmngr apt-transport-https lsb-release ca-certificates &&
@@ -36,6 +36,11 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &&
 sudo apt -y install nodejs
 
 #----Nerd fonts---
+# install 3270 Nerd Font --> u can choose another at: https://www.nerdfonts.com/font-downloads
+cd ~ &&
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/3270.zip &&
+unzip 3270.zip -d ~/.fonts &&
+fc-cache -fv
 
 #---Lua language server ---
 cd ~ 
