@@ -35,11 +35,25 @@ sudo apt install dirmngr apt-transport-https lsb-release ca-certificates &&
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &&
 sudo apt -y install nodejs
 
+#--- Mini conda---#
+
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm -rf ~/miniconda3/miniconda.sh
+# Add conda to path
+~/miniconda3/bin/conda init bash
+# ~/miniconda3/bin/conda init zsh
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#  NEOVIM RELATED TOOLS   #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 #----Nerd fonts---
 # install 3270 Nerd Font --> u can choose another at: https://www.nerdfonts.com/font-downloads
 cd ~ &&
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/3270.zip &&
-unzip 3270.zip -d ~/.fonts &&
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip &&
+sudo unzip SourceCodePro.zip -d /usr/local/share/fonts
 fc-cache -fv
 
 #---Lua language server ---
@@ -61,6 +75,7 @@ npm i -g pyright
 
 #---Python Debuggers ---
 conda create --name debugpy &&
+conda activate debugpy &&
 conda install debugpy &&
 conda deactivate
 
