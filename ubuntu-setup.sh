@@ -3,7 +3,6 @@
 #                       UBUNTU SETUP                #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-
 #Script which install all my favorite application and
 #settings for Ubuntu
 #How to to run:
