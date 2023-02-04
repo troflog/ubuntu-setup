@@ -25,7 +25,8 @@ sudo apt -y install curl   \
      python3-dev python3-pip neovim git \
      gdebi-core npm dpkg wget xclip \
      silversearcher-ag zsh powerline fonts-powerline \
-     ripgrep sqlite libsqlite3-dev ninja-build neovim
+     ripgrep sqlite libsqlite3-dev ninja-build neovim \
+     bear
 
 #Tools 
 sudo apt -y install gnome-tweak-tool gnome-session tmux virtualbox gnome-shell-extensions 
