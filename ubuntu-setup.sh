@@ -53,6 +53,7 @@ rm -rf ~/miniconda3/miniconda.sh
 # install 3270 Nerd Font --> u can choose another at: https://www.nerdfonts.com/font-downloads
 cd ~ &&
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip &&
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CodeNewRoman.zip &&
 sudo unzip SourceCodePro.zip -d /usr/local/share/fonts
 fc-cache -fv
 
