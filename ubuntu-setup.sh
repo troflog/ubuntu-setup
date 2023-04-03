@@ -129,5 +129,7 @@ echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y &&'\
      ' && sudo apt autoclean -y && pysup && neopysup"' >>  ~/.bashrc
 echo 'alias vim="nvim"' >> ~/.bashrc
 echo 'alias vi="nvim"' >> ~/.bashrc
+echo ' ' >> ~/.bashrc
+cat neovim-config-switcher.sh >> ~/.bashrc
 
 
