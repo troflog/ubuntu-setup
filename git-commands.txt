@@ -1,0 +1,6 @@
+#Show one git blob
+git show #hash 
+#Git show more info about blob
+git show --pretty=raw #hash 
+#Show more info about tree
+git ls-tree
