@@ -126,3 +126,5 @@ alias pys='source environments/trond/bin/activate'
 #Upgrade all packages with pip
 alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U'
 
+
+

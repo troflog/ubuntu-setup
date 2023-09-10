@@ -1,8 +1,10 @@
-alias nvim-chad="NVIM_APPNAME=nvim-chad nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-tbf="NVIM_APPNAME=tbf nvim"
 
 nvims() {
-  items=("default" "NvChad")
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  items=("default" "NvChad" "LazyVim" "tbf")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"
     return 0
@@ -12,4 +14,4 @@ nvims() {
   NVIM_APPNAME=$config nvim $@
 }
 
-bindkey -s ^a "nvims\n"
+bind -x '"\C-a": nvims'

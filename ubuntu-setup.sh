@@ -25,7 +25,8 @@ sudo apt -y install curl   \
      gdebi-core npm dpkg wget xclip \
      silversearcher-ag zsh powerline fonts-powerline \
      ripgrep sqlite libsqlite3-dev ninja-build neovim \
-     bear
+     bear fzf \
+     
 
 #Tools 
 sudo apt -y install gnome-tweak-tool gnome-session tmux virtualbox gnome-shell-extensions 
@@ -46,16 +47,38 @@ rm -rf ~/miniconda3/miniconda.sh
 # ~/miniconda3/bin/conda init zsh
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   KITTY AND Zsh         # 
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+#Make zsh the default shell
+$ chsh -s $(which zsh)
+#Install Oh My Zsh
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#Install Zsh autosuggestion
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+#Install Zsh syntax highlighting on zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+#Install Powerlevek10k theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
 #  NEOVIM RELATED TOOLS   #
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #----Nerd fonts---
 # install 3270 Nerd Font --> u can choose another at: https://www.nerdfonts.com/font-downloads
 cd ~ &&
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip &&
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CodeNewRoman.zip &&
-sudo unzip SourceCodePro.zip -d /usr/local/share/fonts
+#wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip &&
+#wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CodeNewRoman.zip &&
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/NerdFontsSymbolsOnly.zip
+#sudo unzip SourceCodePro.zip -d /usr/local/share/fonts
+sudo unzip NerdFontsSymbolsOnly.zip -d /usr/local/share/fonts
 fc-cache -fv
+
+#-- C-familiy compiling and debugging
+sudo apt install clang lldb lld
+
 
 #---Lua language server ---
 cd ~ 
@@ -85,6 +108,8 @@ sudo wget -q -O - https://screenrec.com/download/pub.asc | sudo apt-key add - &&
 sudo add-apt-repository 'deb https://screenrec.com/download/ubuntu stable main' &&
 sudo apt update &&
 sudo apt install screenrec
+
+#---Zsh----
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #      SETUP SOFTWARE     #
