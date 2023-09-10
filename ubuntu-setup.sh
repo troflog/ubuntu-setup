@@ -25,7 +25,7 @@ sudo apt -y install curl   \
      gdebi-core npm dpkg wget xclip \
      silversearcher-ag zsh powerline fonts-powerline \
      ripgrep sqlite libsqlite3-dev ninja-build neovim \
-     bear fzf \
+     bear fzf autojump zsh neofetch \
      
 
 #Tools 
