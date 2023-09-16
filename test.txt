@@ -1,0 +1,4 @@
+current-theme.conf
+kitty.conf
+kitty.conf.bak
+tokyo-night-kitty.conf

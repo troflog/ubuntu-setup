@@ -60,6 +60,7 @@ rm -rf ~/miniconda3/miniconda.sh
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #Oh my Bash
+
 #--- .bashrc aliases ---
 
 echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y &&'\
@@ -69,6 +70,11 @@ echo 'alias vim="nvim"' >> ~/.bashrc
 echo 'alias vi="nvim"' >> ~/.bashrc
 echo ' ' >> ~/.bashrc
 cat neovim-config-switcher.sh >> ~/.bashrc
+
+#Dotfile repo
+cd &&
+git clone git@github.com:troflog/dotfiles.git
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        ALACRITTY        # 
@@ -86,6 +92,7 @@ curl -LO  https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf
 cd  Downloads
 sudo apt install -y ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
 
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        KITTY            # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -102,7 +109,10 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/NerdFontsS
 sudo unzip NerdFontsSymbolsOnly.zip -d /usr/local/share/fonts
 fc-cache -fv
 
-
+cd dotfiles/kitty &&
+ln -s current-theme.conf      ~/.config/kitty/current-theme.conf
+ln -s kitty.conf              ~/.config/kitty/kitty.conf
+ln -s tokyo-night-kitty.conf  ~/.config/kitty/tokyo-night-kitty.conf
 
 
 
