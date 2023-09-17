@@ -171,7 +171,8 @@ cat my_zsh_settings.sh >> ~/.zshrc
 git config --global user.email "troflog@gmail.com" &&
 git config --global user.name "TBF" &&
 #Printing a nice tree version of the commit story
-echo 'export PATH="/home/tbf/.local/bin:$PATH"' >> /home/tbf/.bashrc git config --global alias.lg2 "log --graph --all --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
+echo 'export PATH="/home/tbf/.local/bin:$PATH"' >> /home/tbf/.bashrc
+git config --global alias.lg2 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
 #Set default branch name to main and ot master
 git config --global init.defaultBranch main &&
 git config --global core.editor "nvim"
