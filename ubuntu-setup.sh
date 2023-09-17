@@ -43,17 +43,15 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &&
 sudo apt -y install nodejs
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-#       MINI CONDA        # 
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm -rf ~/miniconda3/miniconda.sh
-# Add conda to path
-~/miniconda3/bin/conda init bash
-# ~/miniconda3/bin/conda init zsh
+#----Nerd fonts---
+# install 3270 Nerd Font --> u can choose another at: https://www.nerdfonts.com/font-downloads
+cd ~ &&
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip &&
+#wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CodeNewRoman.zip &&
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/NerdFontsSymbolsOnly.zip
+sudo unzip SourceCodePro.zip -d /usr/local/share/fonts &&
+sudo unzip NerdFontsSymbolsOnly.zip -d /usr/local/share/fonts &&
+fc-cache -fv
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        BASH             # 
@@ -69,17 +67,11 @@ echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y &&'\
 echo 'alias vim="nvim"' >> ~/.bashrc
 echo 'alias vi="nvim"' >> ~/.bashrc
 echo ' ' >> ~/.bashrc
-cat neovim-config-switcher.sh >> ~/.bashrc
+cat neovim-config-switcher.sh >> ~/.bashrc|
 
 #Dotfile repo
 cd &&
 git clone git@github.com:troflog/dotfiles.git
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-#        ALACRITTY        # 
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #       WEZTERM           # 
@@ -89,8 +81,40 @@ git clone git@github.com:troflog/dotfiles.git
 #echo  "alias wezterm='flatpak run org.wezfurlong.wezterm'"  >> ~/.bashrc
 cd &&
 curl -LO  https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf8fd/wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb &&
-cd  Downloads
-sudo apt install -y ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
+cd  Downloads &&
+sudo apt install -y ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb &&
+cd &&
+mkdir .config/wezterm &&
+ln -s $HOME/dotfiles/wezterm/.wezterm.lua $HOME/.config/wezterm/.wezterm.lua
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#        TMUX             # 
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+cd &&
+git clone git@github.com:troflog/tmux_config.git
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#       MINI CONDA        # 
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm -rf ~/miniconda3/miniconda.sh
+# Add conda to path
+~/miniconda3/bin/conda init bash
+# ~/miniconda3/bin/conda init zsh
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#        ALACRITTY        # 
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+sudo add-apt-repository ppa:aslatter/ppa &&
+sudo apt install alacritty
+#  Run command which
+#sudo update-alternatives --config x-terminal-emulator
+
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -116,12 +140,6 @@ ln -s tokyo-night-kitty.conf  ~/.config/kitty/tokyo-night-kitty.conf
 
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-#        TMUX             # 
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-cd &&
-git clone git@github.com:troflog/tmux_config.git
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        ZSH              # 
