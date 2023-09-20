@@ -111,18 +111,17 @@ cd &&
 rm ~/.bashrc &&
 ln -s dotfiles/bashrc/.bashrc .bashrc
 
-
+#Install starship
+cd &&
+curl -sS https://starship.rs/install.sh | sh &&
+echo 'eval "$(starship init bash)"' >> .bashrc
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        TMUX             # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-
 cd &&
-git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/powerlevel10k
-#echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-
-
+git clone git@github.com:troflog/tmux_config.git
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #       WEZTERM           # 
@@ -138,15 +137,6 @@ sudo dpkg -i wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
 cd &&
 mkdir .config/wezterm &&
 ln -s $HOME/dotfiles/wezterm/.wezterm.lua $HOME/.config/wezterm/.wezterm.lua
-
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-#        TMUX             # 
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-cd &&
-git clone git@github.com:troflog/tmux_config.git
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #       MINI CONDA        # 
@@ -225,6 +215,11 @@ ln -s dotfiles/zshrc/.zshrc .zshrc
 
 #Add my custom aliases and function to -zshrc
 cat $HOME/dotfiles/my_zsh_settings.sh >> ~/.zshrc
+
+
+#cd &&
+#git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/powerlevel10k
+#echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #      NEOVIM             #
