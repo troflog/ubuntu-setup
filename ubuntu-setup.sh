@@ -53,6 +53,38 @@ sudo unzip SourceCodePro.zip -d /usr/local/share/fonts &&
 sudo unzip NerdFontsSymbolsOnly.zip -d /usr/local/share/fonts &&
 fc-cache -fv
 
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#      GIT                #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+#---Git----
+git config --global user.email "troflog@gmail.com" &&
+git config --global user.name "TBF" &&
+#Printing a nice tree version of the commit story
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/tbf/.bashrc
+git config --global alias.lg2 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
+#Set default branch name to main and ot master
+git config --global init.defaultBranch main &&
+git config --global core.editor "nvim"
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#      SSH                #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+#Check that you do not have this from before
+ssh-keygen -t ed25519 -C "troflog@gmail.com"
+ssh-add ~/.ssh/id_ed25519
+#Add key to GitHub accoount after. Use this to copy the key
+#to github
+cat ~/.ssh/id_ed25519.pub
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#     DOTFILES            #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+
 #Dotfile repo
 cd &&
 git clone git@github.com:troflog/dotfiles.git
@@ -174,34 +206,6 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 #Add my custom aliases and function to -zshrc
 cat my_zsh_settings.sh >> ~/.zshrc
-
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-#      GIT                #
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-#---Git----
-git config --global user.email "troflog@gmail.com" &&
-git config --global user.name "TBF" &&
-#Printing a nice tree version of the commit story
-echo 'export PATH="/home/tbf/.local/bin:$PATH"' >> /home/tbf/.bashrc
-git config --global alias.lg2 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
-#Set default branch name to main and ot master
-git config --global init.defaultBranch main &&
-git config --global core.editor "nvim"
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-#      SSH                #
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-#Check that you do not have this from before
-ssh-keygen -t ed25519 -C "troflog@gmail.com"
-ssh-add ~/.ssh/id_ed25519
-#Add key to GitHub accoount after. Use this to copy the key
-#to github
-cat ~/.ssh/id_ed25519.pub
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #      NEOVIM             #
