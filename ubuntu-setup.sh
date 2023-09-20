@@ -53,6 +53,10 @@ sudo unzip SourceCodePro.zip -d /usr/local/share/fonts &&
 sudo unzip NerdFontsSymbolsOnly.zip -d /usr/local/share/fonts &&
 fc-cache -fv
 
+#Dotfile repo
+cd &&
+git clone git@github.com:troflog/dotfiles.git
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        BASH             # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -69,9 +73,18 @@ echo 'alias vi="nvim"' >> ~/.bashrc
 echo ' ' >> ~/.bashrc
 cat neovim-config-switcher.sh >> ~/.bashrc|
 
-#Dotfile repo
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#        TMUX             # 
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+
 cd &&
-git clone git@github.com:troflog/dotfiles.git
+git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/powerlevel10k
+#echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #       WEZTERM           # 
@@ -86,6 +99,7 @@ sudo apt install -y ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb &&
 cd &&
 mkdir .config/wezterm &&
 ln -s $HOME/dotfiles/wezterm/.wezterm.lua $HOME/.config/wezterm/.wezterm.lua
+
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
