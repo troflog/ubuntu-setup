@@ -27,20 +27,23 @@ sudo apt -y install curl   \
      silversearcher-ag zsh powerline fonts-powerline \
      ripgrep sqlite libsqlite3-dev ninja-build neovim \
      bear fzf autojump zsh neofetch \
-     software-properties-common apt-transport-https gpg
+     software-properties-common apt-transport-https gpg \
+     python-software-properties \
+     install dirmngr apt-transport-https lsb-release ca-certificates
      
-#Flatpak repository
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+#Flatpak repository Ubuntu only
+#flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-#Flatpaks
+
 
 #Tools 
 sudo apt -y install gnome-tweak-tool gnome-session tmux virtualbox gnome-shell-extensions 
 
 #-----Nodejs >12 ------
-sudo apt install dirmngr apt-transport-https lsb-release ca-certificates &&
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &&
-sudo apt -y install nodejs
+cd &&
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash &&
+source ~/.profile &&
+nvm  install node
 
 
 #----Nerd fonts---
@@ -62,7 +65,7 @@ fc-cache -fv
 git config --global user.email "troflog@gmail.com" &&
 git config --global user.name "TBF" &&
 #Printing a nice tree version of the commit story
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/tbf/.bashrc
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/tbf/.bashrc &&
 git config --global alias.lg2 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
 #Set default branch name to main and ot master
 git config --global init.defaultBranch main &&
@@ -103,15 +106,10 @@ git clone git@github.com:troflog/dotfiles.git
 
 #Oh my Bash
 
-#--- .bashrc aliases ---
-
-echo 'alias pcupdate="sudo apt update -y && sudo apt full-upgrade -y &&'\
-     'sudo apt autoremove -y && sudo apt clean -y'\
-     ' && sudo apt autoclean -y && pysup && neopysup"' >>  ~/.bashrc
-echo 'alias vim="nvim"' >> ~/.bashrc
-echo 'alias vi="nvim"' >> ~/.bashrc
-echo ' ' >> ~/.bashrc
-cat neovim-config-switcher.sh >> ~/.bashrc|
+#--- .bashrc aliases ---nvmi
+cd &&
+rm ~/.bashrc &&
+ln -s dotfiles/bashrc/.bashrc .bashrc
 
 
 
@@ -132,10 +130,11 @@ git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
 #flatpak install flathub org.wezfurlong.wezterm &&
 #echo  "alias wezterm='flatpak run org.wezfurlong.wezterm'"  >> ~/.bashrc
-cd &&
-curl -LO  https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf8fd/wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb &&
-cd  Downloads &&
-sudo apt install -y ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb &&
+cd ~/Downloads &&
+VERSION=$(curl -s https://api.github.com/repos/wez/wezterm/releases/latest|grep tag_name|cut -d '"' -f 4) &&
+curl -LO https://github.com/wez/wezterm/releases/download/$VERSION/wezterm-$VERSION.Ubuntu22.04.deb %%
+sudo dpkg -i wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
+#sudo apt install -y ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb &&
 cd &&
 mkdir .config/wezterm &&
 ln -s $HOME/dotfiles/wezterm/.wezterm.lua $HOME/.config/wezterm/.wezterm.lua
@@ -153,13 +152,20 @@ git clone git@github.com:troflog/tmux_config.git
 #       MINI CONDA        # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm -rf ~/miniconda3/miniconda.sh
+cd &&
+mkdir -p ~/miniconda3 &&
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh &&
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3 &&
+rm -rf ~/miniconda3/miniconda.sh &&
 # Add conda to path
-~/miniconda3/bin/conda init bash
+~/miniconda3/bin/conda init bash &&
+conda config --add channels conda-forge &&
 # ~/miniconda3/bin/conda init zsh
+
+#Make pys conda enviroment
+conda create --name pys &&
+conda activate pys &&
+conda install matplotlib numpy seaborn scikit-learn -y
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        ALACRITTY        # 
@@ -202,18 +208,23 @@ ln -s tokyo-night-kitty.conf  ~/.config/kitty/tokyo-night-kitty.conf
 #Make zsh the default shell
 $ chsh -s $(which zsh)
 #Install Oh My Zsh
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &&
 #Install Zsh autosuggestion
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
 
 #Install Zsh syntax highlighting on zsh
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
 
 #Install Powerlevek10k theme
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k &&
+
+#Use my own .zshrc
+cd && 
+rm .zshrc &&
+ln -s dotfiles/zshrc/.zshrc .zshrc
 
 #Add my custom aliases and function to -zshrc
-cat my_zsh_settings.sh >> ~/.zshrc
+cat $HOME/dotfiles/my_zsh_settings.sh >> ~/.zshrc
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #      NEOVIM             #
