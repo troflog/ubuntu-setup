@@ -67,6 +67,8 @@ git config --global user.name "TBF" &&
 #Printing a nice tree version of the commit story
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/tbf/.bashrc &&
 git config --global alias.lg2 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
+#Commit and push in same operation
+git config --global alias.cmp '!f() { git add -A && git commit -m "$@" && git push; }; f'
 #Set default branch name to main and ot master
 git config --global init.defaultBranch main &&
 git config --global core.editor "nvim"
@@ -136,7 +138,7 @@ sudo dpkg -i wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
 #sudo apt install -y ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb &&
 cd &&
 mkdir .config/wezterm &&
-ln -s $HOME/dotfiles/wezterm/.wezterm.lua $HOME/.config/wezterm/.wezterm.lua
+ln -s $HOME/dotfiles/wezterm/wezterm.lua $HOME/.config/wezterm/wezterm.lua
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #       MINI CONDA        # 
