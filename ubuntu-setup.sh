@@ -29,14 +29,20 @@ sudo apt -y install curl   \
      bear fzf autojump zsh neofetch \
      software-properties-common apt-transport-https gpg \
      python-software-properties \
-     install dirmngr apt-transport-https lsb-release ca-certificates \
-     lldb
+     install dirmngr apt-transport-https lsb-release ca-certificates 
+
+#Install llvm automatically
+sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+#Fix for lldb error message
+#https://github.com/llvm/llvm-project/issues/55575#issuecomment-1251752632
+#sudo ln -s /usr/lib/llvm-14/lib/python3.10/dist-packages/lldb/* /usr/lib/python3/dist-packages/lldb/
 
 #--------Rust----
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
      
-  #Flatpak repository Ubuntu only
-  #flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+#Flatpak repository Ubuntu only
+#flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+#--- LLVM ---
 
 
 
