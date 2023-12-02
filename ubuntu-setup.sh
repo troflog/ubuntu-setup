@@ -29,43 +29,8 @@ sudo apt -y install curl   \
      bear fzf autojump zsh neofetch \
      software-properties-common apt-transport-https gpg \
      python-software-properties \
-     install dirmngr apt-transport-https lsb-release ca-certificates 
-
-#Install llvm automatically
-sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-#Fix for lldb error message
-#https://github.com/llvm/llvm-project/issues/55575#issuecomment-1251752632
-#sudo ln -s /usr/lib/llvm-14/lib/python3.10/dist-packages/lldb/* /usr/lib/python3/dist-packages/lldb/
-
-#--------Rust----
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-     
-#Flatpak repository Ubuntu only
-#flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-#--- LLVM ---
-
-
-
-#Tools 
-sudo apt -y install gnome-tweak-tool gnome-session tmux virtualbox gnome-shell-extensions 
-
-#-----Nodejs >12 ------
-cd &&
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash &&
-source ~/.profile &&
-nvm  install node
-
-
-#----Nerd fonts---
-# install 3270 Nerd Font --> u can choose another at: https://www.nerdfonts.com/font-downloads
-cd ~ &&
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip &&
-#wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CodeNewRoman.zip &&
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/NerdFontsSymbolsOnly.zip
-sudo unzip SourceCodePro.zip -d /usr/local/share/fonts &&
-sudo unzip NerdFontsSymbolsOnly.zip -d /usr/local/share/fonts &&
-fc-cache -fv
-
+     install dirmngr apt-transport-https lsb-release ca-certificates \
+     tmux virtualbox gnome-shell-extensions 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #      GIT                #
@@ -84,6 +49,69 @@ git config --global alias.cmp '!f() { git add -A && git commit -m "$@" && git pu
 #Set default branch name to main and ot master
 git config --global init.defaultBranch main &&
 git config --global core.editor "nvim"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#        LLVM             #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+#Install llvm automatically
+sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+#Fix for lldb error message
+#https://github.com/llvm/llvm-project/issues/55575#issuecomment-1251752632
+#sudo ln -s /usr/lib/llvm-14/lib/python3.10/dist-packages/lldb/* /usr/lib/python3/dist-packages/lldb/
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#        RUST             #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+     
+#Flatpak repository Ubuntu only
+#flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#        NODE             #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+cd &&
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash &&
+source ~/.profile &&
+nvm  install node
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#       MINI CONDA        # 
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+cd &&
+mkdir -p ~/miniconda3 &&
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh &&
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3 &&
+rm -rf ~/miniconda3/miniconda.sh &&
+# Add conda to path
+~/miniconda3/bin/conda init bash &&
+conda config --add channels conda-forge &&
+# ~/miniconda3/bin/conda init zsh
+
+#Make pys conda enviroment
+conda create --name pys &&
+conda activate pys &&
+conda install matplotlib numpy seaborn scikit-learn -y
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+#       NERD FONTS        #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# install 3270 Nerd Font --> u can choose another at: https://www.nerdfonts.com/font-downloads
+cd ~ &&
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip &&
+#wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CodeNewRoman.zip &&
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/NerdFontsSymbolsOnly.zip
+sudo unzip SourceCodePro.zip -d /usr/local/share/fonts &&
+sudo unzip NerdFontsSymbolsOnly.zip -d /usr/local/share/fonts &&
+fc-cache -fv
+
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #     VSCODE              # 
@@ -118,8 +146,6 @@ git clone git@github.com:troflog/dotfiles.git
 #        BASH             # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-#Oh my Bash
-
 #--- .bashrc aliases ---nvmi
 cd &&
 rm ~/.bashrc &&
@@ -152,24 +178,6 @@ cd &&
 mkdir .config/wezterm &&
 ln -s $HOME/dotfiles/wezterm/wezterm.lua $HOME/.config/wezterm/wezterm.lua
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-#       MINI CONDA        # 
-#~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-cd &&
-mkdir -p ~/miniconda3 &&
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh &&
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3 &&
-rm -rf ~/miniconda3/miniconda.sh &&
-# Add conda to path
-~/miniconda3/bin/conda init bash &&
-conda config --add channels conda-forge &&
-# ~/miniconda3/bin/conda init zsh
-
-#Make pys conda enviroment
-conda create --name pys &&
-conda activate pys &&
-conda install matplotlib numpy seaborn scikit-learn -y
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        ALACRITTY        # 
