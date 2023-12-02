@@ -25,14 +25,18 @@ sudo apt -y install curl   \
      python3-dev python3-pip neovim git \
      gdebi-core npm dpkg wget xclip \
      silversearcher-ag zsh powerline fonts-powerline \
-     ripgrep sqlite libsqlite3-dev ninja-build neovim \
+     ripgrep fd-find sqlite libsqlite3-dev ninja-build neovim \
      bear fzf autojump zsh neofetch \
      software-properties-common apt-transport-https gpg \
      python-software-properties \
-     install dirmngr apt-transport-https lsb-release ca-certificates
+     install dirmngr apt-transport-https lsb-release ca-certificates \
+     lldb
+
+#--------Rust----
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
      
-#Flatpak repository Ubuntu only
-#flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+  #Flatpak repository Ubuntu only
+  #flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 
 
@@ -63,10 +67,12 @@ fc-cache -fv
 
 #---Git----
 git config --global user.email "troflog@gmail.com" &&
-git config --global user.name "TBF" &&
+git config --global user.name "Trond Fløgstad" &&
 #Printing a nice tree version of the commit story
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/tbf/.bashrc &&
-git config --global alias.lg2 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" &&
+git config --global alias.lg1 "log --graph -n 18 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
+git config --global alias.lg2 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
+#git config --global alias.lg3 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
 #Commit and push in same operation
 git config --global alias.cmp '!f() { git add -A && git commit -m "$@" && git push; }; f'
 #Set default branch name to main and ot master
