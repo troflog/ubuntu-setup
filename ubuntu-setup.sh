@@ -128,6 +128,8 @@ sudo apt install code
 
 #Check that you do not have this from before
 ssh-keygen -t ed25519 -C "troflog@gmail.com"
+#Start the agent
+eval `ssh-agent -s`
 ssh-add ~/.ssh/id_ed25519
 #Add key to GitHub accoount after. Use this to copy the key
 #to github
@@ -168,7 +170,7 @@ git clone git@github.com:troflog/tmux_config.git
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #flatpak install flathub org.wezfurlong.wezterm &&
-#echo  "alias wezterm='flatpak run org.wezfurlong.wezterm'"  >> ~/.bashrc
+#echo  "alias wezterm='flatpak run orkwezfurlong.wezterm'"  >> ~/.bashrc
 cd ~/Downloads &&
 VERSION=$(curl -s https://api.github.com/repos/wez/wezterm/releases/latest|grep tag_name|cut -d '"' -f 4) &&
 curl -LO https://github.com/wez/wezterm/releases/download/$VERSION/wezterm-$VERSION.Ubuntu22.04.deb %%
