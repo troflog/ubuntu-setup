@@ -144,6 +144,7 @@ cat ~/.ssh/id_ed25519.pub
 cd &&
 git clone git@github.com:troflog/dotfiles.git
 
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        BASH             # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -188,6 +189,11 @@ sudo add-apt-repository ppa:aslatter/ppa &&
 sudo apt install alacritty
 #  Run command which
 #sudo update-alternatives --config x-terminal-emulator
+
+# We use Alacritty's default Linux config directory as our storage location here.
+mkdir -p ~/.config/alacritty/themes &&
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes &&
+ln -s dotfiles/alacritty/.alacritty.toml .alacritty.toml
 
 
 
