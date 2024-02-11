@@ -31,7 +31,7 @@ sudo apt -y install curl   \
      software-properties-common apt-transport-https gpg \
      #python-software-properties \
      install dirmngr apt-transport-https lsb-release ca-certificates \
-     tmux virtualbox gnome-shell-extensions 
+     tmux virtualbox gnome-shell-extensions python3-venv
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #      GIT                #
@@ -81,6 +81,17 @@ source ~/.profile &&
 nvm  install node
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
+#        PYTHON           #
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+sudo add-apt-repository ppa:deadsnakes/ppa &&
+sudo apt update &&
+sudo apt upgrade -y
+
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~#
 #       MINI CONDA        # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -90,6 +101,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3 &&
 rm -rf ~/miniconda3/miniconda.sh &&
 # Add conda to path
+cd &&
 ~/miniconda3/bin/conda init bash &&
 conda config --add channels conda-forge &&
 # ~/miniconda3/bin/conda init zsh
@@ -153,19 +165,20 @@ git clone git@github.com:troflog/dotfiles.git
 #--- .bashrc aliases ---nvmi
 cd &&
 rm ~/.bashrc &&
-ln -s dotfiles/bashrc/.bashrc .bashrc
-
+ln -s dotfiles/bashrc/.bashrc .bashrc &&
 #Install starship
 cd &&
 curl -sS https://starship.rs/install.sh | sh &&
 echo 'eval "$(starship init bash)"' >> .bashrc
+#Setup autojump
+. /usr/share/autojump/autojump.sh
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        TMUX             # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 cd &&
-git clone git@github.com:troflog/tmux_config.git
+ln -s ~/dotfiles/tmux/.tmux.conf .tmux.conf
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 #       WEZTERM           # 
@@ -299,11 +312,6 @@ conda activate debugpy &&
 conda install debugpy &&
 conda deactivate
 
-#Snipping tool
-sudo wget -q -O - https://screenrec.com/download/pub.asc | sudo apt-key add - &&
-sudo add-apt-repository 'deb https://screenrec.com/download/ubuntu stable main' &&
-sudo apt update &&
-sudo apt install screenrec
 
 
 
@@ -311,3 +319,8 @@ sudo apt install screenrec
 #       MISC              #
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
+#Snipping tool
+sudo wget -q -O - https://screenrec.com/download/pub.asc | sudo apt-key add - &&
+sudo add-apt-repository 'deb https://screenrec.com/download/ubuntu stable main' &&
+sudo apt update &&
+sudo apt install screenrec
