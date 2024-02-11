@@ -21,6 +21,7 @@ sudo apt -y install software-properties-common &&
 sudo add-apt-repository -y ppa:neovim-ppa/unstable 
 
 #Key softwares
+cd Downloads && #Avaoid target is a directory error:)
 sudo apt -y install curl   \
      python3-dev python3-pip neovim git \
      gdebi-core npm dpkg wget xclip \
@@ -28,7 +29,7 @@ sudo apt -y install curl   \
      ripgrep fd-find sqlite libsqlite3-dev ninja-build neovim \
      bear fzf autojump zsh neofetch \
      software-properties-common apt-transport-https gpg \
-     python-software-properties \
+     #python-software-properties \
      install dirmngr apt-transport-https lsb-release ca-certificates \
      tmux virtualbox gnome-shell-extensions 
 
@@ -40,7 +41,7 @@ sudo apt -y install curl   \
 git config --global user.email "troflog@gmail.com" &&
 git config --global user.name "Trond Fløgstad" &&
 #Printing a nice tree version of the commit story
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/tbf/.bashrc &&
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc &&
 git config --global alias.lg "log --graph -n 18 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
 git config --global alias.lg1 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
 #git config --global alias.lg3 "log --graph -n 15 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
@@ -186,7 +187,8 @@ ln -s $HOME/dotfiles/wezterm/wezterm.lua $HOME/.config/wezterm/wezterm.lua
 #        ALACRITTY        # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 sudo add-apt-repository ppa:aslatter/ppa &&
-sudo apt install alacritty
+sudo apt update &&
+sudo apt install alacritty &&
 #  Run command which
 #sudo update-alternatives --config x-terminal-emulator
 
